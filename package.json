@@ -1,5 +1,8 @@
 {
   "name": "chalk",
+  "scripts": {
+    "start": "bundle exec jekyll serve"
+  },
   "dependencies": {
     "jquery": "^3.2.1",
     "throttle-debounce-fn": "^1.0.1",
