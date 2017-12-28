@@ -17,11 +17,11 @@ rss_enabled: true # Change to false if not
 scrollappear_enabled: true # Change to false to disable
 social:
   dribbble: # Add your Dribbble handle
-  facebook: https://www.facebook.com/joao.garin
+  facebook: joao.garin
   flickr: # Add your Flickr handle
-  github: https://github.com/joaogarin
-  linkedin: www.linkedin.com/in/joao-garin-9b118525
-  twitter: https://twitter.com/joaogarin
+  github: joaogarin
+  linkedin: joao-garin-9b118525
+  twitter: joaogarin
   email: # Add your Email address
   bitcoin: # Add your Bitcoin link or address
   ethereum: # Add your Ethereum link or address
