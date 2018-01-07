@@ -78,7 +78,7 @@ class ClientInput extends InputTypePluginBase {
 
 This file will be used by our Create Client mutation (will will get to it soon) and it will tell which data and type to expect. In our case the client has an id, a name and two fields which are the email and telephone fields we mentioned above. Both are of type ```String```.
 
-Next we will do our mutations, lets make a folder inside our "Plugin/GraphQL" folder called "Mutations". Inside lets first place our Create Client mutation to handle creating a new client. Lets make a file called "AddClient.php" : 
+Next we will do our mutations, let's make a folder inside our "Plugin/GraphQL" folder called "Mutations". Inside lets first place our Create Client mutation to handle creating a new client. Let's make a file called "AddClient.php" : 
 
 {% highlight php %}
 <?php
@@ -122,7 +122,7 @@ class AddClient extends CreateEntityBase {
 
 As we can see it uses our Input created above to know what kind of data the fields are, it also contains some information about itself like a name (mutation name), id, what kind of entity we are performing mutation on (node) and what bundle (Client).
 
-we then create a function "extractEntityInput" that will simply return the data received, in this case we dont have to do anything to the data we simply return directly what we receive from the client.
+we then create a function "extractEntityInput" that will simply return the data received, in this case we don't have to do anything to the data we simply return directly what we receive from the client.
 
 lets now do another mutation for deleting a Client. This one is fairly simple as all we actually need is the id of the client to be delete. Add the file "DeleteClient.php" in the same folder as the CreateClient.php file : 
 
@@ -174,7 +174,7 @@ Lets now add this component to our root component (app.component.ts) so that it 
 ...
 {% endhighlight %}
 
-Inside our add-client.component.ts file we can now add the appropriate methods to peform the mutation we created in our bakend : 
+Inside our add-client.component.ts file we can now add the appropriate methods to perform the mutation we created in our backend : 
 
 {% highlight javascript %}
 import { Component, OnInit } from '@angular/core';
@@ -221,11 +221,11 @@ export class AddClientComponent implements OnInit {
 
 {% endhighlight %}
 
-Lets see what we did here. We first created our graphql mutation, again wrapping it in a graphql-tag simillar to how we did with queries. In our Drupal module our mutation had the name "addClient" so thats what we call here, but we have something here that's a bit different ```mutation submitClient($title: String!, $email: String!)```. 
+Lets see what we did here. We first created our graphql mutation, again wrapping it in a graphql-tag similar to how we did with queries. In our Drupal module our mutation had the name "addClient" so that's what we call here, but we have something here that's a bit different ```mutation submitClient($title: String!, $email: String!)```. 
 
 Because we are getting data from the app we normally want to pass it to the mutation itself, we do that using variables. $title and $email are variables that we pass to our mutation. When we call the mutation we pass them using the ```variables```parameter.
 
-Thats it, if authenticated with a user that has permissions to add Clients (see content type permissions) you should now see the new user in your backend.
+That's it, if authenticated with a user that has permissions to add Clients (see content type permissions) you should now see the new user in your backend.
 
 ### Mutations responses
 
@@ -308,6 +308,6 @@ Now for each client we can remove it by clicking the button "delete me" which wi
 
 ## Wrapping things up.
 
-Thats it. We wave a fully functional [GraphQL](http://graphql.org/) backend served by [Drupal](https://drupal.org), where we had to configure close to nothing thanks to [Contenta](http://www.contentacms.org/).
+Awesome!! We wave a fully functional [GraphQL](http://graphql.org/) backend served by [Drupal](https://drupal.org), where we had to configure close to nothing thanks to [Contenta](http://www.contentacms.org/).
 
 I want to thank [Mateu Aguiló Bosch](https://twitter.com/e0ipso) for all the constant help in the Contenta slack channel and awesome work with the Contenta Simple auth module and documentation (awesome videos) and so much more that I dont have time to name all of it, all the contenta people in the Slack channel (they are too many to be named), [Sebastian Siemssen](https://twitter.com/thefubhy?lang=en) and [Philipp Melab](https://twitter.com/pmelab?lang=en) on the awesome work with the GraphQL module and help working through some issues with my authentication, and also [Justin Winter](https://twitter.com/Justinlwinter) for providing me with his [own sample of mutations](https://github.com/justinlevi/graphql_custom_mutation_react) that served as a basis for my own implementation.

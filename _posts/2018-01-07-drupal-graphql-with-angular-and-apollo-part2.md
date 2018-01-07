@@ -21,7 +21,7 @@ The code samples can be found in Github. It includes all the frontend code and a
 
 ## Install Apollo Angular
 
-The first step is to install Apollo Angular. Following the [Instructions on the offical docs site](https://www.apollographql.com/docs/angular/) we start by installing it via npm : 
+The first step is to install Apollo Angular. Following the [Instructions on the official docs site](https://www.apollographql.com/docs/angular/) we start by installing it via npm : 
 
 {% highlight bash %}
 npm install apollo-angular apollo-angular-link-http apollo-client apollo-cache-inmemory graphql-tag graphql --save
@@ -75,7 +75,7 @@ export class AppModule {
 }
 {% endhighlight %}
 
-There are a couple of things going on here, lets break this down into pieces :
+There are a couple of things going on here, let's break this down into pieces :
 
 We configure our http link by providing our backend api URL (contenta graphql endpoint). We then create a authentication context that will append our token to each http request going out with the HTTP header "Authorization" bearer and proving our token (previously saved in localStorage).
 
@@ -120,7 +120,7 @@ For this example I will assume a content type called "Client" exists in the Drup
 
 ### Querying a list of clients
 
-Before I do any frontend work (like mentioned above) I tested my query in GraphiQL Playground, thats good because it provides autocomplete for fields that are available in any entity, relationships etc..Once that's done I can move to the frontend app.
+Before I do any frontend work (like mentioned above) I tested my query in GraphiQL Playground, that's good because it provides autocomplete for fields that are available in any entity, relationships etc..Once that's done I can move to the frontend app.
 
 {% include image.html path="posts/graphiql.png" path-detail="posts/graphiql.png" alt="graphiql" %}
 
@@ -135,7 +135,7 @@ export interface Client {
 }
 {% endhighlight %}
 
-Now in the app.component.ts (our root component for simplicity sake) lets do a simple query to fetch clients. Our query will return an observable of our response (a list of clients) we can then pipe this in our template using the `async` pipe.
+Now in the app.component.ts (our root component for simplicity sake) let's do a simple query to fetch clients. Our query will return an observable of our response (a list of clients) we can then pipe this in our template using the `async` pipe.
 
 {% highlight javascript %}
 ...
@@ -200,7 +200,7 @@ In our template we append a little button to run the Query :
 }
 {% endhighlight %}
 
-We query our data using Apollo Client and wrapping our graphql in graphql-tag. The query is exactly the same we used in the GraphiQL playground. We map the response and get the entities our of the data received and assign it to our observable of type `clients: Observable<Client[]>;`.
+We query our data using Apollo Client and wrapping our graphql in graphql-tag. The query is exactly the same we used in the GraphiQL playground. We map the response and get the entities out of the data received and assign it to our observable of type `clients: Observable<Client[]>;`.
 
 In our template we then can easily list these out : 
 
@@ -402,6 +402,6 @@ and our template for this component where we render the full list of clients we 
 </ul>
 {% endhighlight %}
 
-Thats it! Thats all there is too queries with graphql and contenta using simple auth as the authentication mechanism. You can find all the things you can do with queries including creating fragments for shared parts of queries across multiple places of you app and other more advanced query features in the [Official documentation site](https://www.apollographql.com/docs/angular/).
+That's it! That's all there is too queries with graphql and contenta using simple auth as the authentication mechanism. You can find all the things you can do with queries including creating fragments for shared parts of queries across multiple places of you app and other more advanced query features in the [Official documentation site](https://www.apollographql.com/docs/angular/).
 
 In the [next post](/posts/drupal-graphql-with-angular-and-apollo-part3) we will see how we can do mutations using the [Drupal GraphQL module](https://github.com/drupal-graphql/graphql) and Apollo.
