@@ -10,7 +10,7 @@ tags: [web, angular, javascript, drupal]
 
 This is the continuation of a series of blog posts explaining how to use [Contenta](http://www.contentacms.org/) and [GraphQL](http://graphql.org/) with [Angular](https://angular.io/).
 
-In the [previous post](http://joaogarin.com/posts/drupal-graphql-with-angular-and-apollo-part2) we learned how to configure Authentication, perform [GraphQL](http://graphql.org/) queries and now we will see how to mutate data in our GraphQL backend using [Apollo Angular](https://github.com/apollographql/apollo-angular).
+In the [previous post](/posts/drupal-graphql-with-angular-and-apollo-part2) we learned how to configure Authentication, perform [GraphQL](http://graphql.org/) queries and now we will see how to mutate data in our GraphQL backend using [Apollo Angular](https://github.com/apollographql/apollo-angular).
 
 ## GraphQL mutations
 
@@ -239,6 +239,65 @@ mutation submitClient($title: String!, $email: String!) {
 {% endhighlight %}
 
 We provide what we want to receive from the backend when the operation is finished, in this case we want to get the id of the newly created Client, their title and the email that was inserted. We could easily provide more fields or less fields making it super simple to make a controlled and logical flow while building the frontend.
+
+### Delete mutations
+
+Lets see how we can do a delete using the mutation we created in our custom module above. A delete mutation works exactly like any other mutation, except it has different parameters.
+
+For this we will create a button next to each of our app's component where we list clients so that we can call a mutation to delete each row. First in our app.component.ts lets add the delete mutation and its method : 
+
+{% highlight javascript %}
+...
+export class AppComponent {
+  ...
+  removeClient = gql`
+  mutation submitClient($identifier: Int!) {
+  deleteClient(id:$identifier){
+    entity{
+      ...on NodeClient {
+        nid
+      }
+    }
+  }
+}
+`;
+  ...
+  deleteClient(id: number) {
+    this.apollo.mutate({
+      mutation: this.removeClient,
+      variables: {
+        identifier: parseInt(id.toString()),
+      }
+    }).subscribe(r => console.log(r), e => console.log(e), () => console.log('done'))
+  }
+...
+}
+{% endhighlight %}
+
+As you can see its pretty much like the mutation for adding a client, except we provide only the id here. The Id must be a number(integer) or you will receive an error from GraphQL.
+
+in the template for each client we are listing we then add a button to call the mutation: 
+
+{% highlight html %}
+<ul>
+  <li *ngFor="let client of clients | async">
+    <div>
+      Name: {{client.entityLabel}}
+    </div>
+    <div>
+      Email: {{client.email}}
+    </div>
+    <div>
+      Telephone: {{client.telephone}}
+    </div>
+    <div>
+      <button (click)="deleteClient(client.entityId)">Delete me</button>
+    </div>
+  </li>
+</ul>
+{% endhighlight %}
+
+Now for each client we can remove it by clicking the button "delete me" which will call the mutation with the right id.
 
 ## Wrapping things up.
 

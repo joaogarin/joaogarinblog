@@ -215,4 +215,4 @@ and click the button "login" in order to get redirected to contenta, provide you
 this.oauthService.getAccessToken()
 {% endhighlight %}
 
-Next we  will see how you can connect Apollo and GraphQL to our authentication in order to provide authorization / controlled access for Queries and Mutations.
+In the [next post](/posts/drupal-graphql-with-angular-and-apollo-part2) we  will see how you can connect Apollo and GraphQL to our authentication in order to provide authorization / controlled access for Queries and Mutations.

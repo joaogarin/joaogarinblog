@@ -10,7 +10,7 @@ tags: [web, angular, javascript, drupal]
 
 This is the continuation of a series of blog posts explaining how to use [Contenta](http://www.contentacms.org/) and [GraphQL](http://graphql.org/) with [Angular](https://angular.io/).
 
-In the [previous post](http://joaogarin.com/posts/drupal-graphql-with-angular-and-apollo-part1) we learned how to configure Authentication, and now we will see how to use that authentication to query and mutate data in our GraphQL backend using [Apollo Angular](https://github.com/apollographql/apollo-angular).
+In the [previous post](/posts/drupal-graphql-with-angular-and-apollo-part1) we learned how to configure Authentication, and now we will see how to use that authentication to query and mutate data in our GraphQL backend using [Apollo Angular](https://github.com/apollographql/apollo-angular).
 
 ## Install Apollo Angular
 
@@ -121,9 +121,10 @@ Now that the query works in GraphiQl the first step we can do to start working w
 
 {% highlight javascript %}
 export interface Client {
-  entityLabel: string;
-  email: string;
-  telephone: string;
+    entityId: number,
+    entityLabel: string;
+    email: string;
+    telephone: string;
 }
 {% endhighlight %}
 
@@ -150,10 +151,11 @@ export class AppComponent {
   query = gql`{
   nodeQuery(limit: 5, offset: 0, filter: {type: "Client"}) {
     entities {
-      entityLabel
+      entityId,
+      entityLabel,
       entityUrl {
         path
-      }
+      },
       entityPublished
       ... on NodeClient {
         telephone,
@@ -299,10 +301,11 @@ export class AppComponent {
   query = gql`{
   nodeQuery(limit: 5, offset: 0, filter: {type: "Client"}) {
     entities {
-      entityLabel
+      entityId,
+      entityLabel,
       entityUrl {
         path
-      }
+      },
       entityPublished
       ... on NodeClient {
         telephone,
@@ -394,4 +397,4 @@ and our template for this component where we render the full list of clients we 
 
 Thats it! Thats all there is too queries with graphql and contenta using simple auth as the authentication mechanism. You can find all the things you can do with queries including creating fragments for shared parts of queries across multiple places of you app and other more advanced query features in the [Official documentation site](https://www.apollographql.com/docs/angular/).
 
-In the next post we will see how we can do mutations using the [Drupal GraphQL module](https://github.com/drupal-graphql/graphql) and Apollo.
+In the [next post](/posts/drupal-graphql-with-angular-and-apollo-part3) we will see how we can do mutations using the [Drupal GraphQL module](https://github.com/drupal-graphql/graphql) and Apollo.
