@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Drupal GraphQL with Contenta, Angular and Apollo Part 3 - Mutations"
-description: "Using Apollo angular to peform graphql mutations on Contenta."
+description: "Using Apollo Angular to perform GraphQL mutations on Contenta."
 thumb_image: "posts/mutation.jpg"
 tags: [web, angular, javascript, drupal]
 ---

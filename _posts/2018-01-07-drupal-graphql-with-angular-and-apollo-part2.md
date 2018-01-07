@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Drupal GraphQL with Contenta, Angular and Apollo Part 2 - Queries"
-description: "Using Apollo angular to query entities from Contenta."
+description: "Using Apollo Angular to query entities from Contenta and GraphQL."
 thumb_image: "posts/net.jpg"
 tags: [web, angular, javascript, drupal]
 ---

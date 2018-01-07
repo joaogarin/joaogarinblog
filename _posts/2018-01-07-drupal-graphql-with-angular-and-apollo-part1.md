@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Drupal GraphQL with Contenta, Angular and Apollo Part 1 - Authentication"
-description: "Lets see how to get started using apollo drupal and angular."
+description: "Getting started with Using Contenta with GraphQL powered by Apollo and Angular."
 thumb_image: "posts/net.jpg"
 tags: [web, angular, javascript, drupal]
 ---
