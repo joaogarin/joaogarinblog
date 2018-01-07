@@ -12,6 +12,13 @@ This is the continuation of a series of blog posts explaining how to use [Conten
 
 In the [previous post](/posts/drupal-graphql-with-angular-and-apollo-part1) we learned how to configure Authentication, and now we will see how to use that authentication to query and mutate data in our GraphQL backend using [Apollo Angular](https://github.com/apollographql/apollo-angular).
 
+## Full code samples
+
+The code samples can be found in Github. It includes all the frontend code and also the code for the custom mutations to be used with Drupal GraphQL.
+
+[Frontend code](https://github.com/joaogarin/drupal-graphql-with-angular-and-apollo)
+[Custom GraphQL mutation module](https://github.com/joaogarin/graphql_custom_mutations)
+
 ## Install Apollo Angular
 
 The first step is to install Apollo Angular. Following the [Instructions on the offical docs site](https://www.apollographql.com/docs/angular/) we start by installing it via npm : 

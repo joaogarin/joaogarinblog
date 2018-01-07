@@ -22,6 +22,13 @@ I will go through three of the most common things when it comes to building an a
 
 So lets get started with part 1, Authentication!!
 
+## Full code samples
+
+The code samples can be found in Github. It includes all the frontend code and also the code for the custom mutations to be used with Drupal GraphQL.
+
+[Frontend code](https://github.com/joaogarin/drupal-graphql-with-angular-and-apollo)
+[Custom GraphQL mutation module](https://github.com/joaogarin/graphql_custom_mutations)
+
 ## Install Contenta
 
 The first thing we need to do is to have an installation of [Contenta](http://www.contentacms.org/). There are informations on the page how to install but you can run the quick install by running the following command : 
