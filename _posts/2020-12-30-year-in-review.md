@@ -1,17 +1,17 @@
 ---
 layout: post
 title: "2020 year in review"
-description: "A recap of a pandemic year that all in all, was not so bad."
+description: "A recap of a pandemic year that all in all, still had its moments."
 thumb_image: "posts/ocean.jpg"
 tags: [yearreview, productivity, personal]
 ---
 
 {% include image.html path="posts/ocean.jpg" path-detail="posts/ocean.jpg" alt="Ocean" %}
-2020 was a strange year, no doubt about it. But all in all I have to say I am pretty happy booking back at the end and seeing that despite all the challenging situations the year turned out to be not bad at all from a personal and professional point of view.
+2020 was a strange year, no doubt about it. But all in all I have to say I am pretty happy looking back here at the end and seeing that despite all the challenging situations the year turned out to be not bad at all from a personal and professional point of view.
 
 ## Personally
 
-I will start with personal because this year strange as it might seem was way more challenging on a personal level than on a professional level.
+I will start with personal because this year, strange as it might seem, was way more challenging on a personal level than on a professional level.
 
 ### New year, new home
 
@@ -23,7 +23,7 @@ Our kids keep growing super healthy, funny, and happy and it's just a tremendous
 
 ### Public speaking
 
-I could consider this work, but I guess I don't. This was a milestone of me personally and even though it is a bit “workish” I will put it here. I did a talk in DrupalCon Europe and was really excited, my first ever real talk in a conference (of course this year remote) and very fitting that this conference was Drupal related to a technology / framework / CMS that has given me so much during my professional but also personal life. I hope I get to do more soon, hopefully also some in-person when they get back.
+I could consider this work, but I guess I don't. This was a milestone of me personally and even though it is a bit “workish” I will put it here as a personal _moment_. I did a talk in DrupalCon Europe on visual regression testing, a topic I have fallen a bit in love with the last year or so, and was really excited. This was my first ever real talk in a conference (of course this year remote), and very fitting that this conference was Drupal related, a technology / framework / CMS that has given me so much. I hope I get to do more soon, hopefully also some in-person when they get back.
 
 ## Professionally
 
@@ -31,7 +31,7 @@ Professionally my year was quite busy but I think it went pretty smooth mostly d
 
 ### New technology in next gen jobiqo
 
-I have been working a lot in jobiqo in a future version of our job boards which has new technology, new methodologies, it's just been a lot of fun and without putting too many details into the stack it includes some of the things I absolutely love to work with such as React, Nextjs, Design systems and storybook, visual testing and ofc Drupal.
+I have been working a lot in jobiqo in a future version of our job boards which has new technology, new methodologies, it's just been a lot of fun working with some of the things I absolutely love to work with such as React, Nextjs, Design systems and storybook, visual testing and of course, Drupal.
 
 ### New company
 
@@ -43,4 +43,6 @@ I have been doing a project with my sister for a management solution for ambulat
 
 ## Recap
 
-All in all, and I know we have all been hearing that _2020 is horrible please just end it_ etc etc, I am quite happy going into 2021 but also looking back at 2020 I feel like if we did this much in this year we are going into next years stronger than ever. I totally empathise with everyone who had a challenging year and where things did indeed go very horrible, but for me personally I think this was an interesting year at the very least because it pushed some new boundaries on us as Humans, friends, as family, as coworkers and I feel on my circle at least we did rise to the occasion, exceptionally well.
+I know we have all been hearing that _2020 is horrible please just end it_ etc etc, I am naturally quite happy going into 2021 but also looking back at 2020 I feel like if we did this much in a year like this one we are going into next years stronger than ever.
+
+I totally empathise with everyone who had a challenging year and where things did indeed go very horrible, but for me personally I think this was an interesting year, at the very least, because it pushed some new boundaries on us as Humans, friends, family, and as coworkers and I feel on my circle at least we did rise to the occasion, exceptionally well I might add.
