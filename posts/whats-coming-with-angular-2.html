@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>joaogarin | Whats coming with Angular 2</title>
+  <meta name="description" content="Angular is one of the most if not the most popular javascript front end frameworks around, and its version 2.0 is comming out">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="Whats coming with Angular 2">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="/posts/whats-coming-with-angular-2">
+  <meta property="og:description" content="Angular is one of the most if not the most popular javascript front end frameworks around, and its version 2.0 is comming out">
+  <meta property="og:site_name" content="joaogarin">
+  <meta property="og:image" content="/posts/ang.jpg">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="/posts/whats-coming-with-angular-2">
+  <meta name="twitter:title" content="Whats coming with Angular 2">
+  <meta name="twitter:description" content="Angular is one of the most if not the most popular javascript front end frameworks around, and its version 2.0 is comming out">
+  <meta name="twitter:image" content="/posts/ang.jpg">
+
+  <link href="/feed.xml" type="application/rss+xml" rel="alternate" title="joaogarin Last 10 blog posts" />
+
+  
+
+  
+    <link rel="icon" type="image/x-icon" href="/assets/favicon-light-a98c41efc5ed9fcc06ac664c9e2f7a9b3c3b2e0a52357d221fe382f6f4abc8fc.ico">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon-light-87d1f2a3a19b1500e5c1626a0492025ca5f7f97d24540dc5900288e92112925a.png">
+    <link rel="stylesheet" type="text/css" href="/assets/light-bb1553a18d0f1ccfe1aabc010584c49b4277a88503216b78906ba719e30019c1.css">
+  
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="joaogarin">joaogarin</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-about">
+  <use href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about" xlink:href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://twitter.com/joaogarin" rel="noreferrer noopener" target="_blank" title="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-twitter">
+  <use href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter" xlink:href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://www.facebook.com/joao.garin" rel="noreferrer noopener" target="_blank" title="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-facebook">
+  <use href="/assets/facebook-72c99b26d37bee65607720abb23d26b44ef30cca1187f98b0d9305be1230b1bf.svg#icon-facebook" xlink:href="/assets/facebook-72c99b26d37bee65607720abb23d26b44ef30cca1187f98b0d9305be1230b1bf.svg#icon-facebook"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://github.com/joaogarin" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-github">
+  <use href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github" xlink:href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="https://www.linkedin.com/in/joao-garin-9b118525" rel="noreferrer noopener" target="_blank" title="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-linkedin">
+  <use href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin" xlink:href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="/feed.xml" rel="noreferrer noopener" target="_blank" title="RSS">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-rss">
+  <use href="/assets/rss-541ec5cea9cefd10d2fcfec01888f3f231a8829940249835fa7b7b3a12ae0d0d.svg#icon-rss" xlink:href="/assets/rss-541ec5cea9cefd10d2fcfec01888f3f231a8829940249835fa7b7b3a12ae0d0d.svg#icon-rss"></use>
+</svg>
+
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+        <article class="article scrollappear">
+          <header class="article-header">
+            <h1>Whats coming with Angular 2</h1>
+            <p>Angular is one of the most if not the most popular javascript front end frameworks around, and its version 2.0 is comming out</p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                November 4, 2015
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  4 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tag/web">web</a>
+                
+                  <a href="/tag/angular">angular</a>
+                
+                  <a href="/tag/javascript">javascript</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <p><a href="/assets/posts/ang-c3bf37fe0fa89dbecf530cd238c7331806bc47c8bb6b2e97abb2e2d4c52a3baa.jpg" data-rjs="/assets/posts/ang-c3bf37fe0fa89dbecf530cd238c7331806bc47c8bb6b2e97abb2e2d4c52a3baa.jpg" class="fluidbox-trigger">
+  <img src="/assets/posts/ang-c3bf37fe0fa89dbecf530cd238c7331806bc47c8bb6b2e97abb2e2d4c52a3baa.jpg" alt="Angularjs components" />
+</a></p>
+
+<p>Angular is one of the most if not the most popular javascript front end frameworks around, and its version 2.0 is comming out with some major changes and complete rewrite of the framework including increased performance and a lot of new features.</p>
+
+<p>Angular 2 was first announced in Paris at the <a href="http://ngeurope.org/">ng-europe conference</a> and it caused quite a sensation after anouncing that a lof of the things from angular 1 would be “killed” like controllers or scope.</p>
+
+<h2 id="why-a-new-version">Why a new version</h2>
+
+<p>The reason for a new version of angular and the complete rewrite has multiple parts to it. Partially because there are a lof of things that where not going in the right direction in angular1, react and other frameworks exposed that in some way like the performance issue with the way change detection was being done in Angular1 or the way that it was not leveraging new tools and ES6, the new version of Javascript.</p>
+
+<p>But lets take the steps and analyze each of these things.</p>
+
+<h3 id="mobile">Mobile</h3>
+
+<p>On of the things Angular2 focuses on is making sure that mobile is a first target and not just something that “works”. This meand improving perfomance drastically as well as making sure animations are smooth and integration with tools like ionic are on the edge of mobile. By the way the Ionic team is working closely with the angular team to develop angular2 and they actualy released a <a href="http://ionic.io/2">alpha version of Ionic2</a> running on Angular 2 already.</p>
+
+<h3 id="a-more-modular-angular">A more modular Angular</h3>
+
+<p>Another of the challenges of the Angular team for Angular2 is making sure the size of the framework is smaller. Aming at less than 70K. For this a lot of the modules where removed from the core and they are integrated as you need them. This is great  because for simple apps where you dont need as much you dont have to pack things that are really not necessary making loading time smaller and increasing performance.</p>
+
+<h3 id="a-more-modern-angular">A more modern Angular</h3>
+
+<p>Like mentioned before one of the key things right now is making sure Angular leverages all the features of ES6, as well as targeting modern browsers making sure that making hacks and workarounds for basic things dont have to be done by developers and possibly can be handled by the framework itself.</p>
+
+<h2 id="what-are-then-the-changes-that-we-can-expect-on-angular-">What are then the changes that we can expect on Angular ?</h2>
+
+<p>So lets dig in into the changes that Angular2 will bring to the table and how good / challenging they can be for us developers.</p>
+
+<h3 id="atscript-extending-microsofts-typescript">AtScript (Extending Microsoft’s TypeScript)</h3>
+
+<p>In October 2014 the angular team announced they would be extending and using Microsoft. AtScript is a superset of ES6 and its being used to develop Angular2. Its processed by <a href="https://github.com/google/traceur-compiler">Traceur </a>to produce ES5 script. However in Angular2 you are not forced to use AtScript to run your application. You can still use ES5 Javascript or Dart to develop your app, so in this case its actually quite flexible.</p>
+
+<h3 id="improved-dependency-injection">Improved Dependency injection</h3>
+
+<p>Dependency injection is a design pattern where an object is passed its dependencies instead of assigning them himself was one of the key points and a big differentiator in Angular1. But in Angular1 DI was full of problems and these problems are now being addressed in Angular2 as well as improving with some additional features like child injectors or lifetime/scope controll.</p>
+
+<h3 id="templating">Templating</h3>
+
+<p>In Angular2 templating processing changes quite a lot. As the code is based on the ES6 module spec, the module loader will load dependencies by simply referencing them in the component definition.</p>
+
+<h3 id="directives">Directives </h3>
+
+<p>In Angular2 there are 3 types of directives.</p>
+
+<ul>
+  <li><strong>Component directives</strong> - They create reusable components by encapsulating Javascript logic , HTML and optinally some CSS (or a stylesheet).</li>
+  <li><strong>Decorator directives</strong> - These directives are used to decorate elements like adding tooltips or showing / hiding elements (using ng-show / ng-hide)</li>
+  <li><strong>Template directives</strong> - Examples of these directives are ng-if and ng-repeat. They will turn HTML into a reusable template. The instantiating of the template and its insertion into the DOM can be fully controlled by the directive author.</li>
+</ul>
+
+<h3 id="the-new-router">The new Router</h3>
+
+<p>Angular2 includes what is known in the angular community as the “new router” by default. It is a much more flexbile and powerfull routing solution as oposed to the first router included in Angular1. Altough this router is included by default in Angular2 it can also be used in Angular1 (from angular 1.4 forward).</p>
+
+<p>It includes the following features :</p>
+
+<ul>
+  <li>Simple JSON-based Route Config</li>
+  <li>Optional Convention over Configuration</li>
+  <li>Static, Parameterized and Splat Route Patterns</li>
+  <li>URL Resolver</li>
+  <li>Query String Support</li>
+  <li>Use Push State or Hashchange</li>
+  <li>Navigation Model (For Generating a Navigation UI)</li>
+  <li>Document Title Updates</li>
+  <li>404 Route Handling</li>
+  <li>Location Service</li>
+  <li>History Manipulation</li>
+</ul>
+
+<h2 id="concluding">Concluding </h2>
+
+<p>Angular2 will come with a pack of new features, focused on support for ES6 features and modern web browsers, new router, increase performance and of course a component driven approach to how web apps will be built.</p>
+
+<p>While angular1 will stay for a long time, as there is not even a release date to angular2, it is good to keep an eye on what will be a new dawn for the angular community and a lot of the community is already making plans on how to upgrade apps to angular 2 and start using it right away.</p>
+
+<p>A full detail on the progress and plan into Angular2 first betas can be found here : <a href="https://github.com/angular/angular/milestones">https://github.com/angular/angular/milestones</a></p>
+
+          </div>
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/home?status=Whats+coming+with+Angular+2%20-%20/posts/whats-coming-with-angular-2%20by%20@joaogarin" title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=/posts/whats-coming-with-angular-2" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"/></svg>
+            </a>
+            <a href="https://plus.google.com/share?url=/posts/whats-coming-with-angular-2" title="Share on Google+" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 128 128"><path d="M40.7 55.9v16.1c0 0 15.6 0 22 0C59.2 82.5 53.8 88.2 40.7 88.2c-13.3 0-23.7-10.8-23.7-24.2s10.4-24.2 23.7-24.2c7.1 0 11.6 2.5 15.8 5.9 3.3-3.3 3.1-3.8 11.6-11.9 -7.2-6.6-16.8-10.6-27.4-10.6C18.2 23.3 0 41.5 0 64c0 22.5 18.2 40.7 40.7 40.7 33.6 0 41.8-29.3 39-48.8H40.7zM113.9 56.7V42.6h-10.1v14.1H89.4v10.1h14.5v14.5h10.1V66.8H128V56.7H113.9z"/></svg>
+            </a>
+          </div>
+
+          
+            <div id="disqus_thread" class="article-comments"></div>
+            <script src="https://joaogarinblog.disqus.com/embed.js" async defer></script>
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+          
+        </article>
+        <footer class="footer scrollappear">
+  <p>
+    This site is powered by Jekyll and Chalk theme. All content rights reserved to 
+    <a href="/about" title="About me">Joao Garin</a>.
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+
+<script src="/assets/vendor-130c9c254effc51f3283620bc635851da7b99c20901216948f11ba72ee13317f.js" type="text/javascript"></script>
+
+
+  <script src="/assets/webfonts-96493456d319d1bf419afdf8701552d4d486fee6afd304897d4fd81eb4e0cc0b.js" type="text/javascript"></script>
+
+
+
+  <script src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js" type="text/javascript"></script>
+
+
+<script src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js" type="text/javascript"></script>
+
+</body>
+</html>

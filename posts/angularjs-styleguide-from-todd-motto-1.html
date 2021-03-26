@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>joaogarin | Create components at runtime with Angular</title>
+  <meta name="description" content="Dynamically rendering angular components using the runtime compiler.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="Create components at runtime with Angular">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="/posts/angularjs-styleguide-from-todd-motto-1">
+  <meta property="og:description" content="Dynamically rendering angular components using the runtime compiler.">
+  <meta property="og:site_name" content="joaogarin">
+  <meta property="og:image" content="/posts/cycle.jpg">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="/posts/angularjs-styleguide-from-todd-motto-1">
+  <meta name="twitter:title" content="Create components at runtime with Angular">
+  <meta name="twitter:description" content="Dynamically rendering angular components using the runtime compiler.">
+  <meta name="twitter:image" content="/posts/cycle.jpg">
+
+  <link href="/feed.xml" type="application/rss+xml" rel="alternate" title="joaogarin Last 10 blog posts" />
+
+  
+
+  
+    <link rel="icon" type="image/x-icon" href="/assets/favicon-light-a98c41efc5ed9fcc06ac664c9e2f7a9b3c3b2e0a52357d221fe382f6f4abc8fc.ico">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon-light-87d1f2a3a19b1500e5c1626a0492025ca5f7f97d24540dc5900288e92112925a.png">
+    <link rel="stylesheet" type="text/css" href="/assets/light-bb1553a18d0f1ccfe1aabc010584c49b4277a88503216b78906ba719e30019c1.css">
+  
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="joaogarin">joaogarin</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-about">
+  <use href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about" xlink:href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://twitter.com/joaogarin" rel="noreferrer noopener" target="_blank" title="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-twitter">
+  <use href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter" xlink:href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://www.facebook.com/joao.garin" rel="noreferrer noopener" target="_blank" title="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-facebook">
+  <use href="/assets/facebook-72c99b26d37bee65607720abb23d26b44ef30cca1187f98b0d9305be1230b1bf.svg#icon-facebook" xlink:href="/assets/facebook-72c99b26d37bee65607720abb23d26b44ef30cca1187f98b0d9305be1230b1bf.svg#icon-facebook"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://github.com/joaogarin" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-github">
+  <use href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github" xlink:href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="https://www.linkedin.com/in/joao-garin-9b118525" rel="noreferrer noopener" target="_blank" title="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-linkedin">
+  <use href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin" xlink:href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="/feed.xml" rel="noreferrer noopener" target="_blank" title="RSS">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-rss">
+  <use href="/assets/rss-541ec5cea9cefd10d2fcfec01888f3f231a8829940249835fa7b7b3a12ae0d0d.svg#icon-rss" xlink:href="/assets/rss-541ec5cea9cefd10d2fcfec01888f3f231a8829940249835fa7b7b3a12ae0d0d.svg#icon-rss"></use>
+</svg>
+
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+        <article class="article scrollappear">
+          <header class="article-header">
+            <h1>Create components at runtime with Angular</h1>
+            <p>Dynamically rendering angular components using the runtime compiler.</p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                July 9, 2016
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  7 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tag/web">web</a>
+                
+                  <a href="/tag/angular">angular</a>
+                
+                  <a href="/tag/javascript">javascript</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <p><a href="/assets/posts/cycle-393b66b8b167e22877c22955eb45840da69093a551f22a2aa44193cd0899afe3.jpg" data-rjs="/assets/posts/cycle-393b66b8b167e22877c22955eb45840da69093a551f22a2aa44193cd0899afe3.jpg" class="fluidbox-trigger">
+  <img src="/assets/posts/cycle-393b66b8b167e22877c22955eb45840da69093a551f22a2aa44193cd0899afe3.jpg" alt="Cycle" />
+</a></p>
+
+<p>The last couple of months I have been on and off trying to get <a href="https://github.com/carteb/carte-blanche">carte blanche</a> working with Angular 2 by making a <a href="https://github.com/joaogarin/carte-blanche-angular2">Carte-blanche-angular2 plugin</a>. This has provided some interesting challenges especially on how to render dynamically components at runtime using the Angular runtime compiler. The approach I took went through several changes during RC periods but I will focus on the last one which is the one compatible with the final release of Angular2 using NgModules.</p>
+
+<p>This solution is basically a fork of the <a href="http://blog.lacolaco.net/post/dynamic-component-creation-in-angular-2-rc-5/">blog post</a> from <a href="https://twitter.com/laco0416">Laco</a> so I heavily suggest checking out that blog post as well as <a href="https://github.com/laco0416/angular2-component-outlet">the repo</a>.</p>
+
+<h2 id="the-challenge">The Challenge</h2>
+
+<p>The challenge is simple, create at runtime a component and render it in a page. Maybe you have something that comes from a server, or in a build step get some info and need to dynamically at runtime use that style / template or inputs and create a component and render it. This is one of the most flexible ways to do it.</p>
+
+<h3 id="an-overview-of-the-solution">An overview of the solution</h3>
+
+<p>Before jumping into the technical aspects and code for the solution I think it’s good to have an overview of how it works briefly. Angular works with NgModules since RC5 and that applies to dynamically generated components as well, every component needs to be registered in a module.</p>
+
+<p>The solution has 4 essential steps to it :</p>
+
+<ul>
+  <li>1 ) Create a dynamic component outlet / wrapper(call it dynamic-outlet</li>
+  <li>2 ) Get the necessary parts of what makes a component (style, template, inputs etc..)</li>
+  <li>3 ) Dynamically generate the Component Factory with the Angular runtime compiler</li>
+  <li>4 ) Inject the component factory into the dynamic outlet component template using <a href="https://angular.io/docs/ts/latest/api/core/index/ViewContainerRef-class.html">viewContainerRef</a></li>
+</ul>
+
+<p>So let’s start by the first step, creating a simple component to inject the dynamically created component in. Because it needs to go somewhere right? This could totally be you root angular app or any other component where you need to place this dynamic component in.</p>
+
+<h3 id="1--2---create-a-dynamic-component-outlet-and-get-dynamic-data">1 &amp; 2 - Create a dynamic component outlet and get dynamic data</h3>
+
+<p>This part is the simple part. You just create a component just like any other component, with only one particular thing. It will have sort of a placeholder to inject the component in. There are different ways to accomplish this injecting part using @ViewChild or using ReflectiveInjector, for this case we will use the ReflectiveInjector service.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="cm">/*
+ * Angular 2 decorators and services
+ */</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">OnInit</span><span class="p">,</span> <span class="nx">ReflectiveInjector</span><span class="p">,</span> <span class="nx">ViewContainerRef</span><span class="p">,</span> <span class="nx">ComponentRef</span><span class="p">,</span> <span class="nx">ComponentFactoryResolver</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">ComponentGenerator</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./../../services/index.ts</span><span class="dl">'</span><span class="p">;</span>
+<span class="cm">/*
+ * Dynamic outlet to generate components
+ */</span>
+<span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">cb-dynamic-outlet</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">styles</span><span class="p">:</span> <span class="p">[</span><span class="s2">``</span><span class="p">],</span>
+  <span class="na">template</span><span class="p">:</span> <span class="s2">`&lt;div id="dynamic-cmp" class="dynamic-comp"&gt;&lt;/div&gt;`</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">DynamicOutlet</span> <span class="kr">implements</span> <span class="nx">OnInit</span><span class="p">,</span> <span class="nx">OnChanges</span> <span class="p">{</span>
+  <span class="nl">cmpRef</span><span class="p">:</span> <span class="nx">ComponentRef</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="kd">constructor</span><span class="p">(</span>
+    <span class="kr">private</span> <span class="nx">componentGenerator</span><span class="p">:</span> <span class="nx">ComponentGenerator</span><span class="p">,</span>
+    <span class="kr">private</span> <span class="nx">vcRef</span><span class="p">:</span> <span class="nx">ViewContainerRef</span><span class="p">)</span> <span class="p">{</span>
+  <span class="p">}</span>
+  <span class="nx">ngOnInit</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">renderComponent</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="cm">/**
+   * Use the componentGenerator service to render the component Dynamically
+   */</span>
+  <span class="nx">renderComponent</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Parse the decorator info</span>
+    <span class="kd">let</span> <span class="nx">componentDecorator</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">dynamic-name-comp</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">styles</span><span class="p">:</span> <span class="p">[</span><span class="s2">``</span><span class="p">],</span>
+        <span class="na">template</span><span class="p">:</span> <span class="s2">`&lt;div class="name"&gt;&lt;/div&gt;`</span><span class="p">,</span>
+    <span class="p">};</span>
+    <span class="c1">// get the ComponentFactory from our service so we can inject it into the view</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">componentGenerator</span><span class="p">.</span><span class="nx">createComponentFactory</span><span class="p">(</span><span class="nx">componentDecorator</span><span class="p">,</span> <span class="p">(</span><span class="nx">factory</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">factory</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Inject here the component factory (step 4)</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Step 2 here is hardcoded, but you could here use your service call via http or something that would make these things dynamic like the styles or the name of the component to be rendered. Essencially provide these as an object (simillar to how its used when using the @component decorator).</p>
+
+<h3 id="step-3---dynamically-generate-the-component-factory">Step 3 - Dynamically generate the Component Factory</h3>
+
+<p>In this step we will create the service used previously to generate the component factory by at runtime registering a new module and attaching the newly created component to that module.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="p">{</span> <span class="nx">Injectable</span><span class="p">,</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">Input</span><span class="p">,</span> <span class="nx">ComponentFactory</span><span class="p">,</span> <span class="nx">ComponentFactoryResolver</span><span class="p">,</span> <span class="nx">NgModule</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/common</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">BrowserModule</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/platform-browser</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">RuntimeCompiler</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@angular/compiler</span><span class="dl">"</span><span class="p">;</span>
+<span class="p">@</span><span class="nd">Injectable</span><span class="p">()</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">ComponentGenerator</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="kr">private</span> <span class="nx">compiler</span><span class="p">:</span> <span class="nx">RuntimeCompiler</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="cm">/**
+     * Create the metadata for the component to be used to generate the component Factory
+     */</span>
+    <span class="nx">createMetadata</span><span class="p">(</span><span class="nx">componentDecorator</span><span class="p">):</span> <span class="nx">Component</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">Component</span><span class="p">(</span><span class="nx">componentDecorator</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="cm">/**
+     * Use the runtime compiler to create this Component Factory dynamically as well as a dynamic module 
+     * to wrapp it
+     * 
+     * This will create a dynamic module and a dynamic component by calling  compiler.compileModuleAndAllComponentsAsync and passing in a NgModule
+     * that we create on the fly wrapping our newly created component
+     * 
+     * @param {Object} decoratorData
+     * The medatata for this component
+     * 
+     * @param {Function} cb
+     * The callback to call when we create the component returning inside our component Factor
+     * 
+     * With this Component Factory we can then inject it in the View by using ViewContainerRef and Injector
+     * See @dynamicOutlet.component.ts
+     */</span>
+    <span class="nx">createComponentFactory</span><span class="p">(</span><span class="nx">decoratorData</span><span class="p">:</span> <span class="nb">Object</span><span class="p">,</span> <span class="nx">cb</span><span class="p">:</span> <span class="nb">Function</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// first get our metadata</span>
+        <span class="kd">let</span> <span class="nx">metadata</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">createMetadata</span><span class="p">(</span><span class="nx">decoratorData</span><span class="p">);</span>
+        <span class="kd">let</span> <span class="nx">factory</span><span class="p">;</span>
+        <span class="kd">const</span> <span class="nx">cmpClass</span> <span class="o">=</span> <span class="kd">class</span> <span class="nx">DynamicComponent</span> <span class="p">{</span> <span class="p">};</span>
+        <span class="kd">const</span> <span class="nx">decoratedCmp</span> <span class="o">=</span> <span class="nx">Component</span><span class="p">(</span><span class="nx">metadata</span><span class="p">)(</span><span class="nx">cmpClass</span><span class="p">);</span>
+        <span class="p">@</span><span class="nd">NgModule</span><span class="p">({</span>
+            <span class="na">imports</span><span class="p">:</span> <span class="p">[</span><span class="nx">BrowserModule</span><span class="p">],</span>
+            <span class="na">declarations</span><span class="p">:</span> <span class="p">[</span><span class="nx">decoratedCmp</span><span class="p">]</span>
+        <span class="p">})</span>
+        <span class="kd">class</span> <span class="nx">DynamicModule</span> <span class="p">{</span> <span class="p">}</span>
+       <span class="k">this</span><span class="p">.</span><span class="nx">compiler</span><span class="p">.</span><span class="nx">compileModuleAndAllComponentsAsync</span><span class="p">(</span><span class="nx">DynamicModule</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">moduleWithComponentFactory</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="kd">const</span> <span class="nx">compFactory</span> <span class="o">=</span> <span class="nx">moduleWithComponentFactory</span><span class="p">.</span><span class="nx">componentFactories</span>
+                <span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span><span class="p">.</span><span class="nx">componentType</span> <span class="o">===</span> <span class="nx">decoratedCmp</span><span class="p">);</span>
+            <span class="nx">cb</span><span class="p">(</span><span class="nx">compFactory</span><span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Let’s analyze what was done in this service for a moment so we can better understand the concept behind it.</p>
+
+<p>We start by calling <strong>createComponentFactory</strong>, which is a function that takes what we call the decorator data simulating what we normally send to a @component decorator :</p>
+
+<ul>
+  <li>Selector</li>
+  <li>Styles</li>
+  <li>Template</li>
+</ul>
+
+<p>This could have more things like change detection strategy and any other @component decorator properties but for simplicity we have these which are the most common ones being used.</p>
+
+<p>The second step is to create the component with the metadata and the class (an empty class in this case for simplicity reasons) and register it in a module and compiling with the @NgModule decorator.</p>
+
+<p>Finally we compile it and return the factory. The trick here is because a module contains multiple components (normally) we filter this by the one that has the class that we just created in order to return only the component we need.</p>
+
+<h3 id="step-4----inject-the-component-into-the-dynamic-outlet-component-template-using-viewcontainerref">Step 4 -  Inject the component into the dynamic outlet component template using viewContainerRef</h3>
+
+<p>On step one after we get the component factory from our service’s <strong>createComponentFactory</strong> method we have to inject it into our view. Lets take a look at that.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"> <span class="c1">// get the ComponentFactory from our service so we can inject it into the view</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">componentGenerator</span><span class="p">.</span><span class="nx">createComponentFactory</span><span class="p">(</span><span class="nx">componentDecorator</span><span class="p">,</span> <span class="p">(</span><span class="nx">factory</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">factory</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">vcRef</span><span class="p">.</span><span class="nx">clear</span><span class="p">();</span>
+        <span class="kd">const</span> <span class="nx">injector</span> <span class="o">=</span> <span class="nx">ReflectiveInjector</span><span class="p">.</span><span class="nx">fromResolvedProviders</span><span class="p">([],</span> <span class="k">this</span><span class="p">.</span><span class="nx">vcRef</span><span class="p">.</span><span class="nx">parentInjector</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">cmpRef</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">vcRef</span><span class="p">.</span><span class="nx">createComponent</span><span class="p">(</span><span class="nx">factory</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nx">injector</span><span class="p">,</span> <span class="p">[]);</span>
+        <span class="c1">// Here we can populate inputs</span>
+        <span class="c1">// This has to be dynamic for every input</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">cmpRef</span><span class="p">.</span><span class="nx">instance</span><span class="p">[</span><span class="dl">'</span><span class="s1">name</span><span class="dl">'</span><span class="p">]</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Some dynamic name</span><span class="dl">'</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">});</span></code></pre></figure>
+
+<p>As we can see here we use the ReflectiveInjector to inject our component into the view and this is pretty straightforward. We can then also inject dynamically inputs and other things into this component by accessing the component reference instance.</p>
+
+<h2 id="review">Review</h2>
+
+<p>That’s it. We have a component that was created entirely at runtime, injecting inputs into it that are also dynamic and could be fetched from a server, could also be changed by some observable response for example etc.. This is a great feature of angular2 that allows for dynamic creation of components whose templates, styles and / or inputs might be delivered at runtime for whatever reason.</p>
+
+<h3 id="aot">AOT</h3>
+
+<p>I haven’t explored AOT, or how that would play out in this scenario at all, if that would even be something doable or not since this is a runtime thing. At the moment this is all done in JIT mode using the RuntimeCompiler form @angular/compiler module.</p>
+
+          </div>
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/home?status=Create+components+at+runtime+with+Angular%20-%20/posts/angularjs-styleguide-from-todd-motto-1%20by%20@joaogarin" title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=/posts/angularjs-styleguide-from-todd-motto-1" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"/></svg>
+            </a>
+            <a href="https://plus.google.com/share?url=/posts/angularjs-styleguide-from-todd-motto-1" title="Share on Google+" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 128 128"><path d="M40.7 55.9v16.1c0 0 15.6 0 22 0C59.2 82.5 53.8 88.2 40.7 88.2c-13.3 0-23.7-10.8-23.7-24.2s10.4-24.2 23.7-24.2c7.1 0 11.6 2.5 15.8 5.9 3.3-3.3 3.1-3.8 11.6-11.9 -7.2-6.6-16.8-10.6-27.4-10.6C18.2 23.3 0 41.5 0 64c0 22.5 18.2 40.7 40.7 40.7 33.6 0 41.8-29.3 39-48.8H40.7zM113.9 56.7V42.6h-10.1v14.1H89.4v10.1h14.5v14.5h10.1V66.8H128V56.7H113.9z"/></svg>
+            </a>
+          </div>
+
+          
+            <div id="disqus_thread" class="article-comments"></div>
+            <script src="https://joaogarinblog.disqus.com/embed.js" async defer></script>
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+          
+        </article>
+        <footer class="footer scrollappear">
+  <p>
+    This site is powered by Jekyll and Chalk theme. All content rights reserved to 
+    <a href="/about" title="About me">Joao Garin</a>.
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+
+<script src="/assets/vendor-130c9c254effc51f3283620bc635851da7b99c20901216948f11ba72ee13317f.js" type="text/javascript"></script>
+
+
+  <script src="/assets/webfonts-96493456d319d1bf419afdf8701552d4d486fee6afd304897d4fd81eb4e0cc0b.js" type="text/javascript"></script>
+
+
+
+  <script src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js" type="text/javascript"></script>
+
+
+<script src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js" type="text/javascript"></script>
+
+</body>
+</html>

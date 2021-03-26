@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>joaogarin | Lazy loading with Angular2 and Webpack</title>
+  <meta name="description" content="Let’s analyze how NgModule() works, what it is and how it can help to enable lazy loading in Angular 2 applications today. In this case we will be using Webpack">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="Lazy loading with Angular2 and Webpack">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="/posts/lazy-loading-with-angular2-and-webpack">
+  <meta property="og:description" content="Let’s analyze how NgModule() works, what it is and how it can help to enable lazy loading in Angular 2 applications today. In this case we will be using Webpack">
+  <meta property="og:site_name" content="joaogarin">
+  <meta property="og:image" content="/posts/routes.jpg">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="/posts/lazy-loading-with-angular2-and-webpack">
+  <meta name="twitter:title" content="Lazy loading with Angular2 and Webpack">
+  <meta name="twitter:description" content="Let’s analyze how NgModule() works, what it is and how it can help to enable lazy loading in Angular 2 applications today. In this case we will be using Webpack">
+  <meta name="twitter:image" content="/posts/routes.jpg">
+
+  <link href="/feed.xml" type="application/rss+xml" rel="alternate" title="joaogarin Last 10 blog posts" />
+
+  
+
+  
+    <link rel="icon" type="image/x-icon" href="/assets/favicon-light-a98c41efc5ed9fcc06ac664c9e2f7a9b3c3b2e0a52357d221fe382f6f4abc8fc.ico">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon-light-87d1f2a3a19b1500e5c1626a0492025ca5f7f97d24540dc5900288e92112925a.png">
+    <link rel="stylesheet" type="text/css" href="/assets/light-bb1553a18d0f1ccfe1aabc010584c49b4277a88503216b78906ba719e30019c1.css">
+  
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="joaogarin">joaogarin</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-about">
+  <use href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about" xlink:href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://twitter.com/joaogarin" rel="noreferrer noopener" target="_blank" title="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-twitter">
+  <use href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter" xlink:href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://www.facebook.com/joao.garin" rel="noreferrer noopener" target="_blank" title="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-facebook">
+  <use href="/assets/facebook-72c99b26d37bee65607720abb23d26b44ef30cca1187f98b0d9305be1230b1bf.svg#icon-facebook" xlink:href="/assets/facebook-72c99b26d37bee65607720abb23d26b44ef30cca1187f98b0d9305be1230b1bf.svg#icon-facebook"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://github.com/joaogarin" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-github">
+  <use href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github" xlink:href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="https://www.linkedin.com/in/joao-garin-9b118525" rel="noreferrer noopener" target="_blank" title="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-linkedin">
+  <use href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin" xlink:href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="/feed.xml" rel="noreferrer noopener" target="_blank" title="RSS">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-rss">
+  <use href="/assets/rss-541ec5cea9cefd10d2fcfec01888f3f231a8829940249835fa7b7b3a12ae0d0d.svg#icon-rss" xlink:href="/assets/rss-541ec5cea9cefd10d2fcfec01888f3f231a8829940249835fa7b7b3a12ae0d0d.svg#icon-rss"></use>
+</svg>
+
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+        <article class="article scrollappear">
+          <header class="article-header">
+            <h1>Lazy loading with Angular2 and Webpack</h1>
+            <p>Let’s analyze how NgModule() works, what it is and how it can help to enable lazy loading in Angular 2 applications today. In this case we will be using Webpack</p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                October 28, 2016
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  10 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tag/web">web</a>
+                
+                  <a href="/tag/angular">angular</a>
+                
+                  <a href="/tag/javascript">javascript</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <p><a href="/assets/posts/routes-057fd188799725d125db1257492df9991ed6424594a00f58f65b72f8966836ca.jpg" data-rjs="/assets/posts/routes-057fd188799725d125db1257492df9991ed6424594a00f58f65b72f8966836ca.jpg" class="fluidbox-trigger">
+  <img src="/assets/posts/routes-057fd188799725d125db1257492df9991ed6424594a00f58f65b72f8966836ca.jpg" alt="routes" />
+</a></p>
+
+<p>Right before the final release of Angular 2, <a href="https://angular.io/docs/ts/latest/guide/ngmodule.html">NgModule()</a> was introduced. This was kind of a surprise for some people (myself included) but there was a higher purpose to the inclusion of such a concept, and that was to enable easy lazy loading of these modules.</p>
+
+<p>Let’s analyze how NgModule() works, what it is and how it can help to enable lazy loading in Angular 2 applications today. In this case we will be using <a href="https://webpack.github.io/">Webpack</a>.</p>
+
+<h2 id="ngmodule">NgModule()</h2>
+
+<p>NgModule() allows us to <em>wrapp</em> together components, directives, providers, services and other modules and group them together, creating sort of a block of a cohesive block of functionality. It’s sort of like it was in Angular 1, and if you are now coming to Angular 1 perhaps this will be obvious but for a lot of the Alpha and even Beta and RC period of Angular 2 such a concept did not exist, and going back to it felt a little strange for most part.</p>
+
+<p>Technically it’s a class decorated with <strong>@NgModule</strong>, that takes some metadata object that tells Angular how it should compile and run that code.</p>
+
+<p>I am not going to go into what kind of modules there are and you should have in your app, the official <a href="https://angular.io/docs/ts/latest/guide/ngmodule.html">Angular 2 docs</a> does a great job of explaining that. I am going to focus on how to do lazy loading with NgModule().</p>
+
+<p>One important aspect of Modules is that they can define their own routes, and using this system we can easily setup modules to be lazy loaded when a URL of a particular module is visited.</p>
+
+<h2 id="overview-of-the-app">Overview of the app</h2>
+
+<p>So we have an app, it has 2 modules let’s assume. It has a main <strong>AppModule</strong> where we bootstrap our app, and it has a <strong>ProjectsModule</strong> that we want to lazy loading when someone goes for a route that’s on that module’s route definitions. We also have a <strong>SharedModule</strong> that contains some common utility components and services that we want to use on both main <strong>AppModule</strong> and <strong>ProjectsModule</strong></p>
+
+<h2 id="setting-up-main-ngmodule-with-routes">Setting up main NgModule() with routes</h2>
+
+<p>This is the definition of our main app NgModule()</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">...</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">routes</span><span class="p">:</span> <span class="nx">Routes</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span> <span class="na">path</span><span class="p">:</span> <span class="dl">''</span><span class="p">,</span> <span class="na">component</span><span class="p">:</span> <span class="nx">HomeComponent</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">path</span><span class="p">:</span> <span class="dl">'</span><span class="s1">home</span><span class="dl">'</span><span class="p">,</span> <span class="na">component</span><span class="p">:</span> <span class="nx">HomeComponent</span> <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="na">path</span><span class="p">:</span> <span class="dl">'</span><span class="s1">projects</span><span class="dl">'</span><span class="p">,</span> <span class="na">loadChildren</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">System</span><span class="p">.</span><span class="k">import</span><span class="p">(</span><span class="dl">'</span><span class="s1">./components/container/projects</span><span class="dl">'</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="na">comp</span><span class="p">:</span> <span class="nx">any</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">comp</span><span class="p">.</span><span class="k">default</span><span class="p">;</span>
+    <span class="p">})</span>
+    <span class="p">,</span>
+  <span class="p">},</span>
+<span class="p">];</span>
+
+
+<span class="p">@</span><span class="nd">NgModule</span><span class="p">({</span>
+    <span class="na">imports</span><span class="p">:</span> <span class="p">[</span>
+        <span class="nx">BrowserModule</span><span class="p">,</span>
+        <span class="nx">SharedModule</span><span class="p">.</span><span class="nx">forRoot</span><span class="p">(),</span>
+        <span class="nx">RouterModule</span><span class="p">.</span><span class="nx">forRoot</span><span class="p">(</span><span class="nx">routes</span><span class="p">,</span> <span class="p">{</span> <span class="na">useHash</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}),</span>
+    <span class="p">],</span> <span class="na">declarations</span><span class="p">:</span> <span class="p">[</span>
+        <span class="nx">AppComponent</span><span class="p">,</span>
+        <span class="nx">HomeComponent</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="na">bootstrap</span><span class="p">:</span> <span class="p">[</span><span class="nx">AppComponent</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">AppModule</span> <span class="p">{</span> <span class="p">}</span>
+<span class="p">...</span></code></pre></figure>
+
+<p>It imports the BrowserModule and the SharedModule (ignore for now the forRoot() call on the sharedModule we will go over this in the end of the article), it also declares some components and bootstraps on the AppComponent. But let’s focus on the declaration of the routes for a moment.</p>
+
+<p>This main NgModule() defines some routes, and a specific route (the one we want to lazy load) we use the following route definition :</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">...</span>
+<span class="p">{</span>
+    <span class="nl">path</span><span class="p">:</span> <span class="dl">'</span><span class="s1">projects</span><span class="dl">'</span><span class="p">,</span> <span class="nx">loadChildren</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">System</span><span class="p">.</span><span class="k">import</span><span class="p">(</span><span class="dl">'</span><span class="s1">./components/container/projects</span><span class="dl">'</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">comp</span><span class="p">:</span> <span class="nx">any</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">comp</span><span class="p">.</span><span class="k">default</span><span class="p">;</span>
+    <span class="p">})</span>
+    <span class="p">,</span>
+  <span class="p">},</span>
+<span class="p">...</span></code></pre></figure>
+
+<p>By using <strong>loadChildren</strong> we are telling Angular that we want to lazy load a module into this route (/projects) and that module will define the <em>children</em> of this route, meaning anything after “/projects” will be defined by the module inside the path <strong>’./components/container/projects’</strong>.</p>
+
+<p>And what’s the <strong>System.import()</strong> part in here doing? That’s the magic telling Webpack 2 to create and load this bundle when this route is navigated to. This module needs to be exported using a <a href="https://developer.mozilla.org/en/docs/web/javascript/reference/statements/export#Using_the_default_export">default export</a> inside this file for webpack to understand and load it properly using System.import</p>
+
+<h2 id="setting-up-the-projects-module">Setting up the projects module</h2>
+
+<p>Now that we have things ready in our main AppModule it’s time to define our lazy loaded module, the Projects module. This module will define all routes that will appear under <em>/projects</em> and will import its own components, directives etc..</p>
+
+<p>This is how the definition for this module looks like :</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">...</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">routes</span><span class="p">:</span> <span class="nx">Routes</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span> <span class="na">path</span><span class="p">:</span> <span class="dl">''</span><span class="p">,</span> <span class="na">component</span><span class="p">:</span> <span class="nx">NewProjectComponent</span><span class="p">,</span> <span class="na">pathMatch</span><span class="p">:</span> <span class="dl">'</span><span class="s1">full</span><span class="dl">'</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">path</span><span class="p">:</span> <span class="dl">'</span><span class="s1">new-project</span><span class="dl">'</span><span class="p">,</span> <span class="na">component</span><span class="p">:</span> <span class="nx">NewProjectComponent</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">path</span><span class="p">:</span> <span class="dl">'</span><span class="s1">detail/:id</span><span class="dl">'</span><span class="p">,</span> <span class="na">component</span><span class="p">:</span> <span class="nx">ViewProjectComponent</span> <span class="p">},</span>
+<span class="p">];</span>
+
+
+<span class="p">@</span><span class="nd">NgModule</span><span class="p">({</span>
+    <span class="na">imports</span><span class="p">:</span> <span class="p">[</span>
+        <span class="nx">CommonModule</span><span class="p">,</span>
+        <span class="nx">SharedModule</span><span class="p">,</span>
+        <span class="nx">RouterModule</span><span class="p">.</span><span class="nx">forChild</span><span class="p">(</span><span class="nx">routes</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="na">declarations</span><span class="p">:</span> <span class="p">[</span>
+        <span class="c1">// Components / Directives/ Pipes</span>
+        <span class="nx">EditProjectComponent</span><span class="p">,</span>
+        <span class="nx">NewProjectComponent</span><span class="p">,</span>
+        <span class="nx">ViewProjectComponent</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nx">ProjectModule</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="nx">routes</span> <span class="o">=</span> <span class="nx">routes</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">...</span></code></pre></figure>
+
+<p>Similarly to the main module the <strong>ProjectsModule</strong> imports the Modules it needs (the <strong>CommonModule</strong> and the <strong>SharedModule</strong>) and declares some components, in this case three components.</p>
+
+<p>It also defines it’s own Routes, one thing to notice is that each of these routes is accessible through <em>/projects/the-route-subpath</em> as in the main module we said that we would be <em>“loading children”</em> for the projects module, hence the usage of <strong>RouterModule.forChild(routes)</strong> when defining the lazy loaded module.</p>
+
+<p>So the actual URL for these routes are :</p>
+
+<ul>
+  <li><strong>/projects</strong> - the default route for the projects module</li>
+  <li><strong>/projects/new-project</strong> - The second route we defined in the projects module</li>
+  <li><strong>/projects/detail/:id</strong> - The third route we defined, this one takes a parameter which is the project id</li>
+</ul>
+
+<p>Notice one important thing we mentioned earlier, due to how System.import() works we need to export the Module using default exports for the modules we want to lazy load, in this last snippet we see :</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nx">ProjectModule</span></code></pre></figure>
+
+<p>If you don’t export it using default export webpack will not be able to understand and load your module at runtime using System import.</p>
+
+<p>And that’s it. There is nothing else you would need to do to have the ProjectsModule loaded lazily when users visit the app.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>Let’s briefly analyze the points that one needs to take in order to have lazy loading working with NgModule()</p>
+
+<p>1 ) Split up the app and the lazy modules using NgModule()
+2 ) Setup routes for the main module using RouterModule.forRoot(routes), and <em>loadChildren</em>for the lazy parts
+3 ) use System.import() to load the children 
+4 ) Setup the lazy module using RouterModule.forChild(routes),
+5 ) Export the lazy module using default exports</p>
+
+<h2 id="sharedmodules">SharedModules</h2>
+
+<p>One common problem people get into when scaling an app is that there are components, directives and more importantly services that need to be shared across an app in different ways and for that <strong>SharedModules</strong> come in handy.</p>
+
+<p>Being able to put these things in a single shared module that can be used across the app is extremely useful but has a couple of <em>gotchas</em> that are quite important and can lead to  some unexpected behaviour, especially when it comes to lazy loaded modules and the Dependency injection tree that Angular creates.</p>
+
+<h3 id="importing-and-exporting-modules-in-a-sharedmodule">Importing and exporting modules in a SharedModule</h3>
+
+<p>The first thing that is important to understand is that a <strong>SharedModule</strong> can import modules that it needs for it’s components, a common case of this is the <strong>CommonModule</strong> that exports directives like <em>ngFor</em> and <em>ngClass</em>. But more importantly it can export modules and the module that a <strong>SharedModule</strong> exports will be available for any module that imports this <strong>SharedModule</strong>.</p>
+
+<p>A <strong>SharedModule</strong> can even export a module without importing it, for example a <strong>SharedModule</strong> can export <strong>FormsModule</strong>, even though it does not import it solely for the purpose of making that <strong>FormsModule</strong> available for any module that imports it. You can find information about this behaviour in the <a href="https://angular.io/docs/ts/latest/guide/ngmodule.html#!#shared-module">SharedModule documentation</a></p>
+
+<h2 id="sharing-services--providers-in-a-sharedmodule">Sharing Services / Providers in a SharedModule</h2>
+
+<p>When it comes to providers the behaviour is a bit more complex. When we include a provider in a <strong>SharedModule</strong> and we import that <strong>SharedModule</strong> a duplicate instance of that provider will be created.</p>
+
+<p>This is an intended behaviour of the Angular 2 Dependency Injection tree, see <a href="https://angular.io/docs/ts/latest/guide/dependency-injection.html">Dependency Injection docs</a> but that can lead to some unexpected results creating duplicate instances of services in an Angular app when a modue is lazy loaded and imports a service included in a SharedModule.</p>
+
+<p>When we want a <em>Singleton</em> service (application-wide service) to be available everywhere in the app it should be included in the app main Module (AppModule in the previous example) where we bootstrap the app. This insures that the service will be available in all modules of the app including lazy loaded modules.</p>
+
+<p>However, if we really want to we can still included these services in a <strong>SharedModule</strong> using again the <em>forRoot()</em> behaviour similar to what we did with the router.</p>
+
+<h2 id="defining-forroot-in-a-sharedmodule">Defining forRoot() in a SharedModule</h2>
+
+<p>So to make sure that a provider included in the <strong>SharedModule</strong> is not duplicated in a lazy loaded module that imports the <strong>SharedModule</strong> we need to do a couple of things</p>
+
+<h3 id="1--include-providers-in-the-forroot-method">1 ) Include providers in the forRoot() method</h3>
+
+<p>The first thing we need to do is to register the providers in the forRoot() method inside the <strong>SharedModule</strong> class instead of registering it in the <strong>NgModule()</strong> object <em>providers</em> property where we normally register providers.</p>
+
+<p>This looks like the following :</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">...</span>
+<span class="p">@</span><span class="nd">NgModule</span><span class="p">({</span>
+    <span class="na">imports</span><span class="p">:</span> <span class="p">[</span>
+        <span class="nx">CommonModule</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="na">declarations</span><span class="p">:</span> <span class="p">[</span>
+        <span class="nx">ButtonComponent</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="na">exports</span><span class="p">:</span> <span class="p">[</span>
+        <span class="nx">ButtonComponent</span>
+    <span class="p">],</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">SharedModule</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="nx">forRoot</span><span class="p">():</span> <span class="nx">ModuleWithProviders</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="na">ngModule</span><span class="p">:</span> <span class="nx">SharedModule</span><span class="p">,</span>
+            <span class="na">providers</span><span class="p">:</span> <span class="p">[</span>
+                <span class="nx">APIService</span><span class="p">,</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="p">...</span></code></pre></figure>
+
+<p>Here is a sample <strong>SharedModule</strong> that imports CommonModule and declares and exports a generic ButtonComponent. It registers the <em>APIService</em> service inside the forRoot() method and lets look at how each Module includes this <strong>SharedModule</strong> so that a duplicate instance of APIService is not created.</p>
+
+<h3 id="2--include-sharedmoduleforroot-inside-appmodule">2 ) Include SharedModule.forRoot() inside AppModule</h3>
+
+<p>In our main module where we want this service to be available and where we want the instanace of <strong>APIService</strong> to be created as a singleton (application-wide service) we use the forRoot() when including <strong>SharedModule</strong>. We saw this before when we defined our <strong>AppModule</strong>.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">...</span>
+<span class="p">@</span><span class="nd">NgModule</span><span class="p">({</span>
+    <span class="na">imports</span><span class="p">:</span> <span class="p">[</span>
+        <span class="nx">BrowserModule</span><span class="p">,</span>
+        <span class="nx">SharedModule</span><span class="p">.</span><span class="nx">forRoot</span><span class="p">(),</span>
+        <span class="nx">RouterModule</span><span class="p">.</span><span class="nx">forRoot</span><span class="p">(</span><span class="nx">routes</span><span class="p">,</span> <span class="p">{</span> <span class="na">useHash</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}),</span>
+    <span class="p">],</span> <span class="na">declarations</span><span class="p">:</span> <span class="p">[</span>
+        <span class="nx">AppComponent</span><span class="p">,</span>
+        <span class="nx">HomeComponent</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="na">bootstrap</span><span class="p">:</span> <span class="p">[</span><span class="nx">AppComponent</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">AppModule</span> <span class="p">{</span> <span class="p">}</span>
+<span class="p">...</span></code></pre></figure>
+
+<p>This makes sure that this service is included in the instance of the <strong>SharedModule</strong> we are creating. This is like saying <strong>“give me everything in the **SharedModule</strong> including whatever is defined inside the forRoot() method”**</p>
+
+<h3 id="normally-include-sharedmodule-inside-the-lazy-loaded-module">Normally include SharedModule inside the lazy loaded module</h3>
+
+<p>In our lazy loaded module nothing changes, we just include the <strong>SharedModule</strong> normally, but because the provider was registered in the forRoot() method it will not be included, and so a duplicate instance of it will not be created.</p>
+
+<p>This looks just like previously when we included the <strong>SharedModule</strong> in our <strong>ProjectsModule</strong></p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">...</span>
+<span class="p">@</span><span class="nd">NgModule</span><span class="p">({</span>
+    <span class="na">imports</span><span class="p">:</span> <span class="p">[</span>
+        <span class="nx">CommonModule</span><span class="p">,</span>
+        <span class="nx">SharedModule</span><span class="p">,</span>
+        <span class="nx">RouterModule</span><span class="p">.</span><span class="nx">forChild</span><span class="p">(</span><span class="nx">routes</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="na">declarations</span><span class="p">:</span> <span class="p">[</span>
+        <span class="c1">// Components / Directives/ Pipes</span>
+        <span class="nx">EditProjectComponent</span><span class="p">,</span>
+        <span class="nx">NewProjectComponent</span><span class="p">,</span>
+        <span class="nx">ViewProjectComponent</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nx">ProjectModule</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="nx">routes</span> <span class="o">=</span> <span class="nx">routes</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">...</span></code></pre></figure>
+
+<p>Here the <strong>SharedModule</strong> will be included but whatever is registered inside forRoot() will not be included.</p>
+
+<p><a href="https://www.youtube.com/watch?v=SBSnsNHQYo4">This video</a> from Angular University explains this behaviour in great detail.</p>
+
+<h2 id="wrapping-up">Wrapping up</h2>
+
+<p>That’s it. We have lazy loading working with our Projects feature module, it’s a bit to take in at the beginning but taking out the part of services and the Dependency Injection behaviour the process is as easy as lazy loading can get.</p>
+
+<p>A big thanks to the <a href="https://angularclass.com/">AngularClass</a> and <a href="https://twitter.com/gdi2290">PatrickJs</a> by providing good insight in this in <a href="https://github.com/AngularClass/angular2-webpack-starter">their starterkit</a></p>
+
+<p>Here are some useful links on the subject :</p>
+
+<p><a href="https://www.youtube.com/watch?v=SBSnsNHQYo4">Sharing services in lazy modules</a>
+<a href="https://angular.io/docs/ts/latest/guide/ngmodule.html">NgModule docs</a>
+<a href="https://angular.io/docs/ts/latest/guide/dependency-injection.html">Angular2 Dependency Injection</a>
+<a href="https://github.com/AngularClass/angular2-webpack-starter">Angular2 webpack starterkit by AngularClass</a></p>
+
+          </div>
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/home?status=Lazy+loading+with+Angular2+and+Webpack%20-%20/posts/lazy-loading-with-angular2-and-webpack%20by%20@joaogarin" title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=/posts/lazy-loading-with-angular2-and-webpack" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"/></svg>
+            </a>
+            <a href="https://plus.google.com/share?url=/posts/lazy-loading-with-angular2-and-webpack" title="Share on Google+" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 128 128"><path d="M40.7 55.9v16.1c0 0 15.6 0 22 0C59.2 82.5 53.8 88.2 40.7 88.2c-13.3 0-23.7-10.8-23.7-24.2s10.4-24.2 23.7-24.2c7.1 0 11.6 2.5 15.8 5.9 3.3-3.3 3.1-3.8 11.6-11.9 -7.2-6.6-16.8-10.6-27.4-10.6C18.2 23.3 0 41.5 0 64c0 22.5 18.2 40.7 40.7 40.7 33.6 0 41.8-29.3 39-48.8H40.7zM113.9 56.7V42.6h-10.1v14.1H89.4v10.1h14.5v14.5h10.1V66.8H128V56.7H113.9z"/></svg>
+            </a>
+          </div>
+
+          
+            <div id="disqus_thread" class="article-comments"></div>
+            <script src="https://joaogarinblog.disqus.com/embed.js" async defer></script>
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+          
+        </article>
+        <footer class="footer scrollappear">
+  <p>
+    This site is powered by Jekyll and Chalk theme. All content rights reserved to 
+    <a href="/about" title="About me">Joao Garin</a>.
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+
+<script src="/assets/vendor-130c9c254effc51f3283620bc635851da7b99c20901216948f11ba72ee13317f.js" type="text/javascript"></script>
+
+
+  <script src="/assets/webfonts-96493456d319d1bf419afdf8701552d4d486fee6afd304897d4fd81eb4e0cc0b.js" type="text/javascript"></script>
+
+
+
+  <script src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js" type="text/javascript"></script>
+
+
+<script src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js" type="text/javascript"></script>
+
+</body>
+</html>

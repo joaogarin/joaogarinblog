@@ -1,4 +1,0 @@
----
-slug: angular
-name: Angular
----

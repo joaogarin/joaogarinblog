@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>joaogarin | Styling in Angular part1 Sass</title>
+  <meta name="description" content="This is the first part of a series of posts that will approach different ways of styling []Angular applications.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="Styling in Angular part1 Sass">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="/posts/styling-in-angular-part1-sass">
+  <meta property="og:description" content="This is the first part of a series of posts that will approach different ways of styling []Angular applications.">
+  <meta property="og:site_name" content="joaogarin">
+  <meta property="og:image" content="/posts/bridge.jpg">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="/posts/styling-in-angular-part1-sass">
+  <meta name="twitter:title" content="Styling in Angular part1 Sass">
+  <meta name="twitter:description" content="This is the first part of a series of posts that will approach different ways of styling []Angular applications.">
+  <meta name="twitter:image" content="/posts/bridge.jpg">
+
+  <link href="/feed.xml" type="application/rss+xml" rel="alternate" title="joaogarin Last 10 blog posts" />
+
+  
+
+  
+    <link rel="icon" type="image/x-icon" href="/assets/favicon-light-a98c41efc5ed9fcc06ac664c9e2f7a9b3c3b2e0a52357d221fe382f6f4abc8fc.ico">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon-light-87d1f2a3a19b1500e5c1626a0492025ca5f7f97d24540dc5900288e92112925a.png">
+    <link rel="stylesheet" type="text/css" href="/assets/light-bb1553a18d0f1ccfe1aabc010584c49b4277a88503216b78906ba719e30019c1.css">
+  
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="joaogarin">joaogarin</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-about">
+  <use href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about" xlink:href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://twitter.com/joaogarin" rel="noreferrer noopener" target="_blank" title="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-twitter">
+  <use href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter" xlink:href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://www.facebook.com/joao.garin" rel="noreferrer noopener" target="_blank" title="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-facebook">
+  <use href="/assets/facebook-72c99b26d37bee65607720abb23d26b44ef30cca1187f98b0d9305be1230b1bf.svg#icon-facebook" xlink:href="/assets/facebook-72c99b26d37bee65607720abb23d26b44ef30cca1187f98b0d9305be1230b1bf.svg#icon-facebook"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://github.com/joaogarin" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-github">
+  <use href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github" xlink:href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="https://www.linkedin.com/in/joao-garin-9b118525" rel="noreferrer noopener" target="_blank" title="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-linkedin">
+  <use href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin" xlink:href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="/feed.xml" rel="noreferrer noopener" target="_blank" title="RSS">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-rss">
+  <use href="/assets/rss-541ec5cea9cefd10d2fcfec01888f3f231a8829940249835fa7b7b3a12ae0d0d.svg#icon-rss" xlink:href="/assets/rss-541ec5cea9cefd10d2fcfec01888f3f231a8829940249835fa7b7b3a12ae0d0d.svg#icon-rss"></use>
+</svg>
+
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+        <article class="article scrollappear">
+          <header class="article-header">
+            <h1>Styling in Angular part1 Sass</h1>
+            <p>This is the first part of a series of posts that will approach different ways of styling []Angular applications.</p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                February 20, 2017
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  6 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tag/web">web</a>
+                
+                  <a href="/tag/angular">angular</a>
+                
+                  <a href="/tag/javascript">javascript</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <p><a href="/assets/posts/bridge-8e48a09cefd82b1a20c81eae6559dd7e79d33c45a68cd729789a8871df41e338.jpg" data-rjs="/assets/posts/bridge-8e48a09cefd82b1a20c81eae6559dd7e79d33c45a68cd729789a8871df41e338.jpg" class="fluidbox-trigger">
+  <img src="/assets/posts/bridge-8e48a09cefd82b1a20c81eae6559dd7e79d33c45a68cd729789a8871df41e338.jpg" alt="bridge" />
+</a></p>
+
+<p>This is the first part of a series of posts that will approach different ways of styling <a href="https://angular.io/">Angular</a> applications. Angular is a very powerful platform for developing web applications, and allows for many different ways that styling can be done, with different benefits and drawbacks and also different tastes when it comes to making the decision of how to style the app you are building.</p>
+
+<p>First I will address an important note which is that this will not be a comparison of which way is the best / more reliable / scalable way of styling your applications. Different projects / teams will need different solutions and what is right for one does not necessarily mean it’s the right for everyone.</p>
+
+<p>A second important note is that this will also not be about <a href="https://angular.io/docs/ts/latest/guide/component-styles.html">Component styles</a> which is well covered in the official angular documentation, or about the different types of styling strategies in Angular components (emulated, shadow-dom or none). This will be more about what kind of frameworks, languages, and workflows you will be choosing for you application. So more in the lines of SASS, pure CSS, CSS-in-JS using CSS modules or Aphrodite or even just using Angular’s styling capabilities as a way of handling styles through the application.</p>
+
+<h2 id="angular-with-sass">Angular with Sass</h2>
+
+<p>The first part of this series will target <a href="http://sass-lang.com/">SASS</a>. Sass has been around for quite a long time, it’s very familiar to both developers and designers and is one of the easiest ways to gain some flexibility on how to style any  application, so naturally this applies also to Angular applications.</p>
+
+<p>To get started with SASS in Angular it’s pretty easy and there are a couple of ways you can do it.</p>
+
+<h3 id="angular2-template-loader">Angular2 template loader</h3>
+
+<p>The first option is to use the <a href="https://github.com/TheLarkInn/angular2-template-loader">Angular2 template loader</a>. This is a <a href="https://webpack.github.io/">webpack</a> loader created by <a href="https://twitter.com/thelarkinn?lang=en">Sean Larkin</a> from the webpack core team. It allows you to use <strong>.scss</strong> files like you would normally do in any normal web application but still be able to use those <strong>.scss</strong> files inside the components <a href="https://angular.io/docs/ts/latest/guide/component-styles.html#!#loading-styles">styleUrls</a>  property.</p>
+
+<p>The first step is to install the angular2-template-loader</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">npm <span class="nb">install </span>angular2-template-loader <span class="nt">--save-dev</span></code></pre></figure>
+
+<p>And inside a component the code would look like this :</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">simple-component</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">template</span><span class="p">:</span> <span class="s2">`&lt;div class=”simple-div-comp”&gt;&lt;/button&gt;`</span><span class="p">,</span>
+  <span class="na">styleUrls</span><span class="p">:</span> <span class="p">[</span><span class="s2">`./simple-component.scss`</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">SimpleComponent</span> <span class="p">{</span> <span class="p">}</span></code></pre></figure>
+
+<p>In your webpack config the loader must be set to use the angular2-template-loader for .ts files like the following :</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">{</span>
+      <span class="nl">test</span><span class="p">:</span> <span class="sr">/</span><span class="se">\.</span><span class="sr">ts$/</span><span class="p">,</span>
+      <span class="nx">loaders</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">awesome-typescript-loader</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">angular2-template-loader</span><span class="dl">'</span><span class="p">],</span>
+      <span class="nx">exclude</span><span class="p">:</span> <span class="p">[</span><span class="sr">/</span><span class="se">\.(</span><span class="sr">spec|e2e</span><span class="se">)\.</span><span class="sr">ts$/</span><span class="p">]</span>
+    <span class="p">},</span></code></pre></figure>
+
+<p>This is essencially like using the normal <a href="https://angular.io/docs/ts/latest/guide/component-styles.html#!#loading-styles">styleUrls</a> property that normally works only for <strong>.css</strong> files, but this time with a <strong>.scss</strong> file. Webpack will take care of compiling that sass to css and embedding it into the component using Angular’s internal styling system.</p>
+
+<p>**Note : **</p>
+
+<p>This works also with AOT which is extremely useful.</p>
+
+<h3 id="ngtoolswebpack">ngtools/webpack</h3>
+
+<p>Angular-cli introduced a new set of tools that the Angular team maintains so that it works also for non-cli projects. One of these is the <a href="https://www.npmjs.com/package/@ngtools/webpack">ngtools/webpack</a> project that includes a set of functionality that covers also what we saw in angular2-template-loader.</p>
+
+<p>This tool includes both an AOT plugin for webpack and also a template loader, which also parses Sass files similar to what angular2-template-loader does. So if you want to combine something that loads sass files into angular2 templates (like angular2-template-loader) and also does AOT the ngtools/webpack is a good way to go at it.</p>
+
+<p>The first step again is to install :</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">npm <span class="nb">install</span> @ngtools/webpack <span class="nt">--save-dev</span></code></pre></figure>
+
+<p>Its simple to use, in your template you use it like in the angular2-template-loader :</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">simple-component</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">template</span><span class="p">:</span> <span class="s2">`&lt;div class=”simple-div-comp”&gt;&lt;/button&gt;`</span><span class="p">,</span>
+  <span class="na">styleUrls</span><span class="p">:</span> <span class="p">[</span><span class="s2">`./simple-component.scss`</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">SimpleComponent</span> <span class="p">{</span> <span class="p">}</span></code></pre></figure>
+
+<p>In the webpack config you would set the following :</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="p">{</span><span class="nx">AotPlugin</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@ngtools/webpack</span><span class="dl">'</span>
+<span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span> <span class="cm">/* ... */</span>
+  <span class="na">module</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">rules</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="na">test</span><span class="p">:</span> <span class="sr">/</span><span class="se">\.</span><span class="sr">ts$/</span><span class="p">,</span>
+        <span class="na">loader</span><span class="p">:</span> <span class="dl">'</span><span class="s1">@ngtools/webpack</span><span class="dl">'</span><span class="p">,</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="na">plugins</span><span class="p">:</span> <span class="p">[</span>
+    <span class="k">new</span> <span class="nx">AotPlugin</span><span class="p">({</span>
+      <span class="na">tsConfigPath</span><span class="p">:</span> <span class="dl">'</span><span class="s1">path/to/tsconfig.json</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">entryModule</span><span class="p">:</span> <span class="dl">'</span><span class="s1">path/to/app.module#AppModule</span><span class="dl">'</span>
+    <span class="p">})</span>
+  <span class="p">]</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>The part that is relevant to the styling is the .ts files loader, where ngtools/webpack is being used as a loader, and notice that it replaces both awesome-typescript-loader (the actually parsing of typescript) and the angular2-template-loader combining them both into one single loader that also does AOT.</p>
+
+<p>In the bottom some additional settings like the entry module are added for the purpose of AOT.</p>
+
+<h3 id="angular-cli">Angular-cli</h3>
+
+<p>Of course the third option is to use the <a href="https://github.com/angular/angular-cli">Angular-cli</a> which is currently in beta but fully supports SASS as well.</p>
+
+<p>The way you would use it is exactly as mentioned above (as it uses behind the scenes the same plugins) :</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">simple-component</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">template</span><span class="p">:</span> <span class="s2">`&lt;div class=”simple-div-comp”&gt;&lt;/button&gt;`</span><span class="p">,</span>
+  <span class="na">styleUrls</span><span class="p">:</span> <span class="p">[</span><span class="s2">`./simple-component.scss`</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">SimpleComponent</span> <span class="p">{</span> <span class="p">}</span></code></pre></figure>
+
+<p>The difference here is you don’t need to do anything on the webpack side. The cli will take care of that for you so this code will just work when dealing with the Cli.</p>
+
+<h2 id="advantages-in-using-sass-with-angular">Advantages in using sass with Angular</h2>
+
+<ul>
+  <li>Sass is still very popular and probably one of the most popular ways of handling CSS in Angular projects so any issues will always be quickly resolved</li>
+  <li>Easy to onboard new people into the application since they are most likely already familiar with the language</li>
+  <li>Sass includes some very high-end css functionality like variables, functions and mixins that regular CSS misses.</li>
+  <li>Possibility to include and use frameworks like bootstrap or foundations that support sass and make it easier to kickstart your projects in term of styling</li>
+</ul>
+
+<h2 id="disadvantages-in-using-sass">Disadvantages in using sass</h2>
+
+<ul>
+  <li>The need to use a sass compiler and a set of extra tools or webpack plugins to handle sass, as Angular by default does not provide this</li>
+  <li>The need to compile sass into CSS also results in some delay when it comes to development as sass files need to be recompiled</li>
+  <li>For small apps this might be an overkill as the need for styling is so small that it doesn’t provide enough value for all the boilerplate and extra setup</li>
+  <li>Sass still lacks a proper way of handling with dead-code-elimination and /or tree shaking that other ways of styling (mostly using javascript) already have accomplished to minimize the amount of code that is lost because one fails to account for what is already being used in terms of scss code.</li>
+</ul>
+
+<p>We will go over other techniques on how to style Angular applications, but SASS is definitely a valid option and will continue to be so for the upcoming years. So keep posted for the other ones that I will go over in the upcoming weeks.</p>
+
+          </div>
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/home?status=Styling+in+Angular+part1+Sass%20-%20/posts/styling-in-angular-part1-sass%20by%20@joaogarin" title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=/posts/styling-in-angular-part1-sass" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"/></svg>
+            </a>
+            <a href="https://plus.google.com/share?url=/posts/styling-in-angular-part1-sass" title="Share on Google+" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 128 128"><path d="M40.7 55.9v16.1c0 0 15.6 0 22 0C59.2 82.5 53.8 88.2 40.7 88.2c-13.3 0-23.7-10.8-23.7-24.2s10.4-24.2 23.7-24.2c7.1 0 11.6 2.5 15.8 5.9 3.3-3.3 3.1-3.8 11.6-11.9 -7.2-6.6-16.8-10.6-27.4-10.6C18.2 23.3 0 41.5 0 64c0 22.5 18.2 40.7 40.7 40.7 33.6 0 41.8-29.3 39-48.8H40.7zM113.9 56.7V42.6h-10.1v14.1H89.4v10.1h14.5v14.5h10.1V66.8H128V56.7H113.9z"/></svg>
+            </a>
+          </div>
+
+          
+            <div id="disqus_thread" class="article-comments"></div>
+            <script src="https://joaogarinblog.disqus.com/embed.js" async defer></script>
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+          
+        </article>
+        <footer class="footer scrollappear">
+  <p>
+    This site is powered by Jekyll and Chalk theme. All content rights reserved to 
+    <a href="/about" title="About me">Joao Garin</a>.
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+
+<script src="/assets/vendor-130c9c254effc51f3283620bc635851da7b99c20901216948f11ba72ee13317f.js" type="text/javascript"></script>
+
+
+  <script src="/assets/webfonts-96493456d319d1bf419afdf8701552d4d486fee6afd304897d4fd81eb4e0cc0b.js" type="text/javascript"></script>
+
+
+
+  <script src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js" type="text/javascript"></script>
+
+
+<script src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js" type="text/javascript"></script>
+
+</body>
+</html>

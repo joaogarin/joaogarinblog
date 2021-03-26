@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>joaogarin | Drupal GraphQL with Contenta, Angular and Apollo Part 3 - Mutations</title>
+  <meta name="description" content="Using Apollo Angular to perform GraphQL mutations on Contenta.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="Drupal GraphQL with Contenta, Angular and Apollo Part 3 - Mutations">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="/posts/drupal-graphql-with-angular-and-apollo-part3">
+  <meta property="og:description" content="Using Apollo Angular to perform GraphQL mutations on Contenta.">
+  <meta property="og:site_name" content="joaogarin">
+  <meta property="og:image" content="/posts/mutation.jpg">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="/posts/drupal-graphql-with-angular-and-apollo-part3">
+  <meta name="twitter:title" content="Drupal GraphQL with Contenta, Angular and Apollo Part 3 - Mutations">
+  <meta name="twitter:description" content="Using Apollo Angular to perform GraphQL mutations on Contenta.">
+  <meta name="twitter:image" content="/posts/mutation.jpg">
+
+  <link href="/feed.xml" type="application/rss+xml" rel="alternate" title="joaogarin Last 10 blog posts" />
+
+  
+
+  
+    <link rel="icon" type="image/x-icon" href="/assets/favicon-light-a98c41efc5ed9fcc06ac664c9e2f7a9b3c3b2e0a52357d221fe382f6f4abc8fc.ico">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon-light-87d1f2a3a19b1500e5c1626a0492025ca5f7f97d24540dc5900288e92112925a.png">
+    <link rel="stylesheet" type="text/css" href="/assets/light-bb1553a18d0f1ccfe1aabc010584c49b4277a88503216b78906ba719e30019c1.css">
+  
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="joaogarin">joaogarin</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-about">
+  <use href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about" xlink:href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://twitter.com/joaogarin" rel="noreferrer noopener" target="_blank" title="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-twitter">
+  <use href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter" xlink:href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://www.facebook.com/joao.garin" rel="noreferrer noopener" target="_blank" title="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-facebook">
+  <use href="/assets/facebook-72c99b26d37bee65607720abb23d26b44ef30cca1187f98b0d9305be1230b1bf.svg#icon-facebook" xlink:href="/assets/facebook-72c99b26d37bee65607720abb23d26b44ef30cca1187f98b0d9305be1230b1bf.svg#icon-facebook"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://github.com/joaogarin" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-github">
+  <use href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github" xlink:href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="https://www.linkedin.com/in/joao-garin-9b118525" rel="noreferrer noopener" target="_blank" title="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-linkedin">
+  <use href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin" xlink:href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="/feed.xml" rel="noreferrer noopener" target="_blank" title="RSS">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-rss">
+  <use href="/assets/rss-541ec5cea9cefd10d2fcfec01888f3f231a8829940249835fa7b7b3a12ae0d0d.svg#icon-rss" xlink:href="/assets/rss-541ec5cea9cefd10d2fcfec01888f3f231a8829940249835fa7b7b3a12ae0d0d.svg#icon-rss"></use>
+</svg>
+
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+        <article class="article scrollappear">
+          <header class="article-header">
+            <h1>Drupal GraphQL with Contenta, Angular and Apollo Part 3 - Mutations</h1>
+            <p>Using Apollo Angular to perform GraphQL mutations on Contenta.</p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                January 7, 2018
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  8 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tag/web">web</a>
+                
+                  <a href="/tag/angular">angular</a>
+                
+                  <a href="/tag/javascript">javascript</a>
+                
+                  <a href="/tag/drupal">drupal</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <p><a href="/assets/posts/mutation-7e77638dd0faff85b1be30e7e8bbbc4826e88442e51773001898a7998b69192b.jpg" data-rjs="/assets/posts/mutation-7e77638dd0faff85b1be30e7e8bbbc4826e88442e51773001898a7998b69192b.jpg" class="fluidbox-trigger">
+  <img src="/assets/posts/mutation-7e77638dd0faff85b1be30e7e8bbbc4826e88442e51773001898a7998b69192b.jpg" alt="mutation" />
+</a></p>
+
+<p>This is the continuation of a series of blog posts explaining how to use <a href="http://www.contentacms.org/">Contenta</a> and <a href="http://graphql.org/">GraphQL</a> with <a href="https://angular.io/">Angular</a>.</p>
+
+<p>In the <a href="/posts/drupal-graphql-with-angular-and-apollo-part2">previous post</a> we learned how to configure Authentication, perform <a href="http://graphql.org/">GraphQL</a> queries and now we will see how to mutate data in our GraphQL backend using <a href="https://github.com/apollographql/apollo-angular">Apollo Angular</a>.</p>
+
+<h2 id="full-code-samples">Full code samples</h2>
+
+<p>The code samples can be found in Github. It includes all the frontend code and also the code for the custom mutations to be used with Drupal GraphQL.</p>
+
+<p><a href="https://github.com/joaogarin/drupal-graphql-with-angular-and-apollo">Frontend code</a>
+<a href="https://github.com/joaogarin/graphql_custom_mutations">Custom GraphQL mutation module</a></p>
+
+<h2 id="graphql-mutations">GraphQL mutations</h2>
+
+<p>Mutations are the name for update / delete / create operations on a GraphQL backend. its how you create new data, perform changes on existing data or delete data from your server.</p>
+
+<p>The <a href="https://github.com/drupal-graphql/graphql">Drupal GraphQL module</a> allows us to create custom mutations fairly easily by creating small custom plugins to tell the GraphQL what to expect and how to handle those changes.</p>
+
+<p>In this post we will be creating a module for our Client content type (see previous blog post) and we will be doing a create mutation in order to add new Clients to our backend.</p>
+
+<h2 id="creating-the-mutation-module">Creating the mutation module</h2>
+
+<p>We will be creating a custom module to handle our mutations for the “Client” content type. Once again :</p>
+
+<p>For this example I will assume a content type called “Client” exists in the Drupal installation (just setup a content type with name Client, machine name should be client). Also this content type should have some fields created :</p>
+
+<ul>
+  <li>email</li>
+  <li>telephone</li>
+</ul>
+
+<p>In your modules folder create a “custom” folder and inside it we are going to place our module inside, lets call it “graphql_custom_mutations”. We start by adding its graphql_custom_mutations.info.yml file :</p>
+
+<figure class="highlight"><pre><code class="language-yml" data-lang="yml"><span class="na">name</span><span class="pi">:</span> <span class="s">Custom graphql mutations</span>
+<span class="na">type</span><span class="pi">:</span> <span class="s">module</span>
+<span class="na">description</span><span class="pi">:</span> <span class="s">A collection of custom GraphQL Mutations</span>
+<span class="na">core</span><span class="pi">:</span> <span class="s">8.x</span>
+<span class="na">package</span><span class="pi">:</span> <span class="s">Custom</span>
+<span class="na">dependencies</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">graphql</span></code></pre></figure>
+
+<p>Lets now create our mutation plugin. Create the folder “Plugin” and inside a “GraphQL” folder to contain our mutation plugins.</p>
+
+<p>Because GraphQL is a typed language we need to provide information about our Client and what kind of data our plugins will be receiving. We will create a folder “InputTypes” and inside place a file called ClientInput.php :</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+<span class="kn">namespace</span> <span class="nn">Drupal\graphql_custom_mutations\Plugin\GraphQL\InputTypes</span><span class="p">;</span>
+
+<span class="kn">use</span> <span class="nc">Drupal\graphql\Plugin\GraphQL\InputTypes\InputTypePluginBase</span><span class="p">;</span>
+
+<span class="cd">/**
+ * Client input type.
+ *
+ * @GraphQLInputType(
+ *   id = "client_input",
+ *   name = "ClientInput",
+ *   fields = {
+ *     "title" = "String",
+ *     "email" = "String",
+ *   }
+ * )
+ */</span>
+<span class="kd">class</span> <span class="nc">ClientInput</span> <span class="kd">extends</span> <span class="nc">InputTypePluginBase</span> <span class="p">{</span>
+
+<span class="p">}</span></code></pre></figure>
+
+<p>This file will be used by our Create Client mutation (will will get to it soon) and it will tell which data and type to expect. In our case the client has an id, a name and two fields which are the email and telephone fields we mentioned above. Both are of type <code class="highlighter-rouge">String</code>.</p>
+
+<p>Next we will do our mutations, let’s make a folder inside our “Plugin/GraphQL” folder called “Mutations”. Inside lets first place our Create Client mutation to handle creating a new client. Let’s make a file called “AddClient.php” :</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+<span class="kn">namespace</span> <span class="nn">Drupal\graphql_custom_mutations\Plugin\GraphQL\Mutations</span><span class="p">;</span>
+
+<span class="kn">use</span> <span class="nc">Drupal\graphql\Annotation\GraphQLMutation</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Drupal\graphql\GraphQL\Type\InputObjectType</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Drupal\graphql\Plugin\GraphQL\InputTypes\InputTypePluginBase</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nf">Drupal\graphql_core</span><span class="err">\</span><span class="nc">Plugin\GraphQL\Mutations\Entity\CreateEntityBase</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Youshido\GraphQL\Execution\ResolveInfo</span><span class="p">;</span>
+
+<span class="cd">/**
+ *  A Simple Client mutation.
+ *
+ * @GraphQLMutation(
+ *   id = "add_client",
+ *   entity_type = "node",
+ *   entity_bundle = "client",
+ *   secure = true,
+ *   name = "addClient",
+ *   type = "EntityCrudOutput",
+ *   arguments = {
+ *      "input" = "ClientInput"
+ *   }
+ * )
+ */</span>
+<span class="kd">class</span> <span class="nc">AddClient</span> <span class="kd">extends</span> <span class="nc">CreateEntityBase</span> <span class="p">{</span>
+
+  <span class="cd">/**
+   * {@inheritdoc}
+   */</span>
+  <span class="k">protected</span> <span class="k">function</span> <span class="n">extractEntityInput</span><span class="p">(</span><span class="kt">array</span> <span class="nv">$inputArgs</span><span class="p">,</span> <span class="kt">InputObjectType</span> <span class="nv">$inputType</span><span class="p">,</span> <span class="kt">ResolveInfo</span> <span class="nv">$info</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span>
+      <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="nv">$inputArgs</span><span class="p">[</span><span class="s1">'title'</span><span class="p">],</span>
+      <span class="s1">'email'</span> <span class="o">=&gt;</span> <span class="nv">$inputArgs</span><span class="p">[</span><span class="s1">'email'</span><span class="p">]</span>
+    <span class="p">];</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>As we can see it uses our Input created above to know what kind of data the fields are, it also contains some information about itself like a name (mutation name), id, what kind of entity we are performing mutation on (node) and what bundle (Client).</p>
+
+<p>we then create a function “extractEntityInput” that will simply return the data received, in this case we don’t have to do anything to the data we simply return directly what we receive from the client.</p>
+
+<p>lets now do another mutation for deleting a Client. This one is fairly simple as all we actually need is the id of the client to be delete. Add the file “DeleteClient.php” in the same folder as the CreateClient.php file :</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+<span class="kn">namespace</span> <span class="nn">Drupal\graphql_custom_mutations\Plugin\GraphQL\Mutations</span><span class="p">;</span>
+
+
+<span class="kn">use</span> <span class="nc">Drupal\graphql\Annotation\GraphQLMutation</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nf">Drupal\graphql_core</span><span class="err">\</span><span class="nc">Plugin\GraphQL\Mutations\Entity\DeleteEntityBase</span><span class="p">;</span>
+
+
+<span class="cd">/**
+ *  A Simple Client mutation.
+ *
+ * @GraphQLMutation(
+ *   id = "delete_client",
+ *   entity_type = "node",
+ *   entity_bundle = "client",
+ *   secure = true,
+ *   name = "deleteClient",
+ *   type = "EntityCrudOutput",
+ *   arguments = {
+ *     "id" = "Int"
+ *   }
+ * )
+ */</span>
+<span class="kd">class</span> <span class="nc">DeleteClient</span> <span class="kd">extends</span> <span class="nc">DeleteEntityBase</span> <span class="p">{</span>
+
+<span class="p">}</span></code></pre></figure>
+
+<p>Thats it!! we have a module that has a simple create and delete mutation, and we can move to Apollo in our Angular app to run this mutation.</p>
+
+<h2 id="performing-mutations-with-apollo">Performing mutations with Apollo</h2>
+
+<p>To handle adding a new client in our Angular app I will be creating a separate module for this. With the CLI run the following command :</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">ng generate component components/add-client</code></pre></figure>
+
+<p>Lets now add this component to our root component (app.component.ts) so that it shows up in our app :</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">...
+<span class="nt">&lt;app-add-client&gt;&lt;/app-add-client&gt;</span>
+...</code></pre></figure>
+
+<p>Inside our add-client.component.ts file we can now add the appropriate methods to perform the mutation we created in our backend :</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="p">{</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">OnInit</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Apollo</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">apollo-angular</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">gql</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">graphql-tag</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">submitClient</span> <span class="o">=</span> <span class="nx">gql</span><span class="s2">`
+mutation submitClient($title: String!, $email: String!) {
+  addClient(input:{title:$title, email:$email}){
+    entity{
+      ...on NodeClient {
+        nid
+        title
+        email
+      }
+    }
+  }
+}
+`</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">app-add-client</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">templateUrl</span><span class="p">:</span> <span class="dl">'</span><span class="s1">./add-client.component.html</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">styleUrls</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">./add-client.component.css</span><span class="dl">'</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">AddClientComponent</span> <span class="kr">implements</span> <span class="nx">OnInit</span> <span class="p">{</span>
+
+  <span class="kd">constructor</span><span class="p">(</span><span class="kr">private</span> <span class="nx">apollo</span><span class="p">:</span> <span class="nx">Apollo</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+
+  <span class="nx">newClient</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">apollo</span><span class="p">.</span><span class="nx">mutate</span><span class="p">({</span>
+      <span class="na">mutation</span><span class="p">:</span> <span class="nx">submitClient</span><span class="p">,</span>
+      <span class="na">variables</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">title</span><span class="p">:</span> <span class="dl">'</span><span class="s1">New Client</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">email</span><span class="p">:</span> <span class="dl">'</span><span class="s1">newClient@gmail.com</span><span class="dl">'</span><span class="p">,</span>
+      <span class="p">}</span>
+    <span class="p">}).</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">r</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">r</span><span class="p">),</span> <span class="nx">e</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">),</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">done</span><span class="dl">'</span><span class="p">))</span>
+  <span class="p">}</span>
+
+  <span class="nx">ngOnInit</span><span class="p">()</span> <span class="p">{</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Lets see what we did here. We first created our graphql mutation, again wrapping it in a graphql-tag similar to how we did with queries. In our Drupal module our mutation had the name “addClient” so that’s what we call here, but we have something here that’s a bit different <code class="highlighter-rouge">mutation submitClient($title: String!, $email: String!)</code>.</p>
+
+<p>Because we are getting data from the app we normally want to pass it to the mutation itself, we do that using variables. $title and $email are variables that we pass to our mutation. When we call the mutation we pass them using the <code class="highlighter-rouge">variables</code>parameter.</p>
+
+<p>That’s it, if authenticated with a user that has permissions to add Clients (see content type permissions) you should now see the new user in your backend.</p>
+
+<h3 id="mutations-responses">Mutations responses</h3>
+
+<p>Another great thing about GraphQL is being able to provide information on what exactly you wish to receive when doing mutations. If you look at the example above :</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">mutation</span> <span class="nx">submitClient</span><span class="p">(</span><span class="nx">$title</span><span class="p">:</span> <span class="nb">String</span><span class="o">!</span><span class="p">,</span> <span class="nx">$email</span><span class="p">:</span> <span class="nb">String</span><span class="o">!</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">addClient</span><span class="p">(</span><span class="nx">input</span><span class="p">:{</span><span class="nl">title</span><span class="p">:</span><span class="nx">$title</span><span class="p">,</span> <span class="nx">email</span><span class="p">:</span><span class="nx">$email</span><span class="p">}){</span>
+    <span class="nx">entity</span><span class="p">{</span>
+      <span class="p">...</span><span class="nx">on</span> <span class="nx">NodeClient</span> <span class="p">{</span>
+        <span class="nx">nid</span>
+        <span class="nx">title</span>
+        <span class="nx">email</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>We provide what we want to receive from the backend when the operation is finished, in this case we want to get the id of the newly created Client, their title and the email that was inserted. We could easily provide more fields or less fields making it super simple to make a controlled and logical flow while building the frontend.</p>
+
+<h3 id="delete-mutations">Delete mutations</h3>
+
+<p>Lets see how we can do a delete using the mutation we created in our custom module above. A delete mutation works exactly like any other mutation, except it has different parameters.</p>
+
+<p>For this we will create a button next to each of our app’s component where we list clients so that we can call a mutation to delete each row. First in our app.component.ts lets add the delete mutation and its method :</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">...</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">AppComponent</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="nx">removeClient</span> <span class="o">=</span> <span class="nx">gql</span><span class="s2">`
+  mutation submitClient($identifier: Int!) {
+  deleteClient(id:$identifier){
+    entity{
+      ...on NodeClient {
+        nid
+      }
+    }
+  }
+}
+`</span><span class="p">;</span>
+  <span class="p">...</span>
+  <span class="nx">deleteClient</span><span class="p">(</span><span class="nx">id</span><span class="p">:</span> <span class="nx">number</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">apollo</span><span class="p">.</span><span class="nx">mutate</span><span class="p">({</span>
+      <span class="na">mutation</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">removeClient</span><span class="p">,</span>
+      <span class="na">variables</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">identifier</span><span class="p">:</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">id</span><span class="p">.</span><span class="nx">toString</span><span class="p">()),</span>
+      <span class="p">}</span>
+    <span class="p">}).</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">r</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">r</span><span class="p">),</span> <span class="nx">e</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">),</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">done</span><span class="dl">'</span><span class="p">))</span>
+  <span class="p">}</span>
+<span class="p">...</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>As you can see its pretty much like the mutation for adding a client, except we provide only the id here. The Id must be a number(integer) or you will receive an error from GraphQL.</p>
+
+<p>in the template for each client we are listing we then add a button to call the mutation:</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;ul&gt;</span>
+  <span class="nt">&lt;li</span> <span class="na">*ngFor=</span><span class="s">"let client of clients | async"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div&gt;</span>
+      Name: 
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div&gt;</span>
+      Email: 
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div&gt;</span>
+      Telephone: 
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div&gt;</span>
+      <span class="nt">&lt;button</span> <span class="na">(click)=</span><span class="s">"deleteClient(client.entityId)"</span><span class="nt">&gt;</span>Delete me<span class="nt">&lt;/button&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span></code></pre></figure>
+
+<p>Now for each client we can remove it by clicking the button “delete me” which will call the mutation with the right id.</p>
+
+<h2 id="wrapping-things-up">Wrapping things up.</h2>
+
+<p>Awesome!! We wave a fully functional <a href="http://graphql.org/">GraphQL</a> backend served by <a href="https://drupal.org">Drupal</a>, where we had to configure close to nothing thanks to <a href="http://www.contentacms.org/">Contenta</a>.</p>
+
+<p>I want to thank <a href="https://twitter.com/e0ipso">Mateu Aguiló Bosch</a> for all the constant help in the Contenta slack channel and awesome work with the Contenta Simple auth module and documentation (awesome videos) and so much more that I dont have time to name all of it, all the contenta people in the Slack channel (they are too many to be named), <a href="https://twitter.com/thefubhy?lang=en">Sebastian Siemssen</a> and <a href="https://twitter.com/pmelab?lang=en">Philipp Melab</a> on the awesome work with the GraphQL module and help working through some issues with my authentication, and also <a href="https://twitter.com/Justinlwinter">Justin Winter</a> for providing me with his <a href="https://github.com/justinlevi/graphql_custom_mutation_react">own sample of mutations</a> that served as a basis for my own implementation.</p>
+
+          </div>
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/home?status=Drupal+GraphQL+with+Contenta,+Angular+and+Apollo+Part+3+-+Mutations%20-%20/posts/drupal-graphql-with-angular-and-apollo-part3%20by%20@joaogarin" title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=/posts/drupal-graphql-with-angular-and-apollo-part3" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"/></svg>
+            </a>
+            <a href="https://plus.google.com/share?url=/posts/drupal-graphql-with-angular-and-apollo-part3" title="Share on Google+" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 128 128"><path d="M40.7 55.9v16.1c0 0 15.6 0 22 0C59.2 82.5 53.8 88.2 40.7 88.2c-13.3 0-23.7-10.8-23.7-24.2s10.4-24.2 23.7-24.2c7.1 0 11.6 2.5 15.8 5.9 3.3-3.3 3.1-3.8 11.6-11.9 -7.2-6.6-16.8-10.6-27.4-10.6C18.2 23.3 0 41.5 0 64c0 22.5 18.2 40.7 40.7 40.7 33.6 0 41.8-29.3 39-48.8H40.7zM113.9 56.7V42.6h-10.1v14.1H89.4v10.1h14.5v14.5h10.1V66.8H128V56.7H113.9z"/></svg>
+            </a>
+          </div>
+
+          
+            <div id="disqus_thread" class="article-comments"></div>
+            <script src="https://joaogarinblog.disqus.com/embed.js" async defer></script>
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+          
+        </article>
+        <footer class="footer scrollappear">
+  <p>
+    This site is powered by Jekyll and Chalk theme. All content rights reserved to 
+    <a href="/about" title="About me">Joao Garin</a>.
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+
+<script src="/assets/vendor-130c9c254effc51f3283620bc635851da7b99c20901216948f11ba72ee13317f.js" type="text/javascript"></script>
+
+
+  <script src="/assets/webfonts-96493456d319d1bf419afdf8701552d4d486fee6afd304897d4fd81eb4e0cc0b.js" type="text/javascript"></script>
+
+
+
+  <script src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js" type="text/javascript"></script>
+
+
+<script src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js" type="text/javascript"></script>
+
+</body>
+</html>

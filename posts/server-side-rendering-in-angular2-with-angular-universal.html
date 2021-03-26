@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>joaogarin | Server side rendering in Angular2 with Angular Universal</title>
+  <meta name="description" content="Server rendering Angular applications using Universal">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="Server side rendering in Angular2 with Angular Universal">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="/posts/server-side-rendering-in-angular2-with-angular-universal">
+  <meta property="og:description" content="Server rendering Angular applications using Universal">
+  <meta property="og:site_name" content="joaogarin">
+  <meta property="og:image" content="/posts/server_0.jpg">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="/posts/server-side-rendering-in-angular2-with-angular-universal">
+  <meta name="twitter:title" content="Server side rendering in Angular2 with Angular Universal">
+  <meta name="twitter:description" content="Server rendering Angular applications using Universal">
+  <meta name="twitter:image" content="/posts/server_0.jpg">
+
+  <link href="/feed.xml" type="application/rss+xml" rel="alternate" title="joaogarin Last 10 blog posts" />
+
+  
+
+  
+    <link rel="icon" type="image/x-icon" href="/assets/favicon-light-a98c41efc5ed9fcc06ac664c9e2f7a9b3c3b2e0a52357d221fe382f6f4abc8fc.ico">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon-light-87d1f2a3a19b1500e5c1626a0492025ca5f7f97d24540dc5900288e92112925a.png">
+    <link rel="stylesheet" type="text/css" href="/assets/light-bb1553a18d0f1ccfe1aabc010584c49b4277a88503216b78906ba719e30019c1.css">
+  
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="joaogarin">joaogarin</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-about">
+  <use href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about" xlink:href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://twitter.com/joaogarin" rel="noreferrer noopener" target="_blank" title="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-twitter">
+  <use href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter" xlink:href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://www.facebook.com/joao.garin" rel="noreferrer noopener" target="_blank" title="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-facebook">
+  <use href="/assets/facebook-72c99b26d37bee65607720abb23d26b44ef30cca1187f98b0d9305be1230b1bf.svg#icon-facebook" xlink:href="/assets/facebook-72c99b26d37bee65607720abb23d26b44ef30cca1187f98b0d9305be1230b1bf.svg#icon-facebook"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://github.com/joaogarin" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-github">
+  <use href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github" xlink:href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="https://www.linkedin.com/in/joao-garin-9b118525" rel="noreferrer noopener" target="_blank" title="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-linkedin">
+  <use href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin" xlink:href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="/feed.xml" rel="noreferrer noopener" target="_blank" title="RSS">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-rss">
+  <use href="/assets/rss-541ec5cea9cefd10d2fcfec01888f3f231a8829940249835fa7b7b3a12ae0d0d.svg#icon-rss" xlink:href="/assets/rss-541ec5cea9cefd10d2fcfec01888f3f231a8829940249835fa7b7b3a12ae0d0d.svg#icon-rss"></use>
+</svg>
+
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+        <article class="article scrollappear">
+          <header class="article-header">
+            <h1>Server side rendering in Angular2 with Angular Universal</h1>
+            <p>Server rendering Angular applications using Universal</p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                April 23, 2016
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  9 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tag/web">web</a>
+                
+                  <a href="/tag/angular">angular</a>
+                
+                  <a href="/tag/javascript">javascript</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <p><a href="/assets/posts/server_0-f53eee6981ddab8034843e53f0d3216675d5ee7d0de4c6262cf280f92285e709.jpg" data-rjs="/assets/posts/server_0-f53eee6981ddab8034843e53f0d3216675d5ee7d0de4c6262cf280f92285e709.jpg" class="fluidbox-trigger">
+  <img src="/assets/posts/server_0-f53eee6981ddab8034843e53f0d3216675d5ee7d0de4c6262cf280f92285e709.jpg" alt="Angularjs components" />
+</a></p>
+
+<p>Angular 2 comes with a lot of new and awesome things. One of which is the separation between the <em>application layer</em> and the <em>render layer</em>. This leads to the possibility to do a lot of great things, one of which is Server Side Rendering.</p>
+
+<h2 id="angular-universal">Angular Universal</h2>
+
+<p>For the purpose of getting server side rendering in Angular2 <a href="https://twitter.com/jeffwhelpley">Jeff Whelpley</a> and <a href="https://twitter.com/gdi2290">PatrickJs</a> created the <a href="https://github.com/angular/universal">Angular Universal project</a>, this project is separated from Angular2 core itself but makes it super easy to plugin into your existing Angular2 application and start getting server side rendering to work for you. The specifications and basic design for the project can be found in the <a href="https://docs.google.com/document/d/1q6g9UlmEZDXgrkY88AJZ6MUrUxcnwhBGS0EXbVlYicY/edit">Google docs spec</a></p>
+
+<h2 id="why-server-side-rendering">Why Server Side rendering</h2>
+
+<p>There might be different reasons for why you would want <strong>Server Side Rendering</strong> in your web application and I will not get too much into why it is a good thing but I will list some of the important things that were the fundamental reason for the existence of such a project, and also why other frameworks like <strong>Meteor</strong> or <strong>React</strong> provide server side rendering for web apps :</p>
+
+<ul>
+  <li>Performance (Perceived load time and actual load time)</li>
+  <li>SEO</li>
+  <li>Browser Support</li>
+  <li>Load preview</li>
+</ul>
+
+<p>You can read a little more into each of these topics in the google doc in <a href="https://docs.google.com/document/d/1q6g9UlmEZDXgrkY88AJZ6MUrUxcnwhBGS0EXbVlYicY/edit#heading=h.je8lg3vxthdp">this section</a></p>
+
+<h2 id="how-it-works">How it works</h2>
+
+<p>The solution designed for Angular Universal is actually quite interesting and differs a little from what other frameworks do to provide server side rendering.
+The basis of the server side rendering architecture in Angular2 includes two essential steps :</p>
+
+<ul>
+  <li>Rendering on the server</li>
+  <li>Transitioning server rendered into client side</li>
+</ul>
+
+<p>For the first one it was quite obvious to take advantage of the rendering layer of Angular2 since it is already completely separated from the <em>DOM</em>.</p>
+
+<p>The second step was where a really nice project got to come to life called <strong>Preboot</strong></p>
+
+<h3 id="preboot">Preboot</h3>
+
+<p>Preboot essentially records events on the server side view and then plays them back once the the client app kicks in and becomes available.  You can read more about it <a href="https://docs.google.com/document/d/1q6g9UlmEZDXgrkY88AJZ6MUrUxcnwhBGS0EXbVlYicY/edit#heading=h.b3qdlffhbqmu">here</a> and I definitely recommend you do because it’s a very interesting solution to a very hard problem. Preboot is highly configurable and was created outside of the scope of Angular2 so it can actually be used by any framework or application.</p>
+
+<p>Key features of preboot include the following.</p>
+
+<ul>
+  <li><strong>Record and playback events</strong> - You can configure through preboot options which actions / events are to be recorded and how they should be replayed</li>
+  <li><strong>Respond immediately to events</strong> - For situations where you want something to be immediately available and not wait for the client to become “live” before the feature is responsive.</li>
+  <li><strong>Maintain focus even page is re-rendered</strong> - Keeping the focus on a specific element (like a textbox) when the client view becomes available, event if a page re-render is necessary.</li>
+  <li><strong>Buffer client-side re-rendering for smoother transition</strong> - The might be cases where you want to buffer how the client side view becomes available for a smoother transitioning from server side view to client side view.</li>
+  <li><strong>Freeze page until bootstrap complete if user clicks button</strong> - if enabled as an option when a button is clicked the page freezes until client side becomes fully available and processes that button event.</li>
+</ul>
+
+<p>A lot of other frameworks like <strong>React</strong> don’t have such a system where your server side view is already interactive for client side events and in these cases this connection between the server side rendered view and client side simply does not exist.</p>
+
+<h3 id="workflow">Workflow</h3>
+
+<p>This is how the workflow for Angular Universal looks like :</p>
+
+<ol>
+  <li>HTTP GET request sent to the server</li>
+  <li>Server renders page that contains the following: Rendered HTML from ServerDomRenderer that the user will see initially and Inline JavaScript for preboot (see ‘preboot’ section below)</li>
+  <li>Browser receives initial payload from server</li>
+  <li>User sees server view</li>
+  <li>Preboot starts recording events</li>
+  <li>Requests made for additional external images, JS, CSS, etc.</li>
+  <li>Once external resources loaded, Angular client bootstrapping begins</li>
+  <li>Client view rendered</li>
+  <li>Bootstrap complete, so Angular client calls preboot.done()</li>
+  <li>Preboot events replayed in order to adjust the application state to reflect changes made by the user before Angular bootstrapped (i.e. typing in textbox, clicking button, etc.)</li>
+</ol>
+
+<h2 id="the-code">The code</h2>
+
+<p>Like mentioned previously it is really simple to port a client side only app to a server side app with Angular Universal. And in code it looks something like the following (I will show only the important steps here, a good solution and example can be found in the <a href="https://github.com/angular/universal-starter">Universal starter repository on github</a></p>
+
+<h3 id="it-always-starts-with-an-indexhtml">It always starts with an index.html</h3>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;title&gt;</span>Angular 2 Universal<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"description"</span> <span class="na">content=</span><span class="s">"Angular 2 Universal"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"keywords"</span> <span class="na">content=</span><span class="s">"Angular 2,Universal"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"icon"</span> <span class="na">href=</span><span class="s">"data:;base64,iVBORw0KGgo="</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;base</span> <span class="na">href=</span><span class="s">"/"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+  <span class="nt">&lt;app&gt;</span>
+    Loading...
+  <span class="nt">&lt;/app&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"/dist/client/bundle.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span></code></pre></figure>
+
+<p>This client bundle is really just a compilation of our client bootstrap that I will show bellow in the client.ts file and the app component which for this is really not important. It can be any app, for now just think of it as your own Angular2 app.</p>
+
+<h3 id="server-bootstrap">Server Bootstrap</h3>
+
+<p>First important thing is that the Universal project provides its own <em>bootstrap</em> and <em>bindings</em> so you will need to include them in your <em>server.ts</em> file.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="dl">'</span><span class="s1">angular2-universal/polyfills</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span>
+  <span class="nx">provide</span><span class="p">,</span>
+  <span class="nx">enableProdMode</span><span class="p">,</span>
+  <span class="nx">expressEngine</span><span class="p">,</span>
+  <span class="nx">REQUEST_URL</span><span class="p">,</span>
+  <span class="nx">ORIGIN_URL</span><span class="p">,</span>
+  <span class="nx">BASE_URL</span><span class="p">,</span>
+  <span class="nx">NODE_ROUTER_PROVIDERS</span><span class="p">,</span>
+  <span class="nx">NODE_HTTP_PROVIDERS</span><span class="p">,</span>
+  <span class="nx">ExpressEngineConfig</span>
+<span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">angular2-universal</span><span class="dl">'</span><span class="p">;</span></code></pre></figure>
+
+<p>You can then start a server engine such as express to deliver your app server side. This looks just like any normal <em>express app</em></p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+<span class="kd">const</span> <span class="nx">ROOT</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="dl">'</span><span class="s1">..</span><span class="dl">'</span><span class="p">));</span>
+<span class="c1">// Express View</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">engine</span><span class="p">(</span><span class="dl">'</span><span class="s1">.html</span><span class="dl">'</span><span class="p">,</span> <span class="nx">expressEngine</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="dl">'</span><span class="s1">views</span><span class="dl">'</span><span class="p">,</span> <span class="nx">__dirname</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="dl">'</span><span class="s1">view engine</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">html</span><span class="dl">'</span><span class="p">);</span></code></pre></figure>
+
+<p>In the third step you then provide the express app with a configuration for the universal app including directives, providers such as HTTP or other providers your app might require.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">ngApp</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">baseUrl</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">;</span>
+  <span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">originalUrl</span> <span class="o">||</span> <span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">;</span>
+  <span class="kd">let</span> <span class="nx">config</span><span class="p">:</span> <span class="nx">ExpressEngineConfig</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">directives</span><span class="p">:</span> <span class="p">[</span> <span class="nx">Html</span> <span class="p">],</span>
+    <span class="na">platformProviders</span><span class="p">:</span> <span class="p">[</span>
+      <span class="nx">provide</span><span class="p">(</span><span class="nx">ORIGIN_URL</span><span class="p">,</span> <span class="p">{</span><span class="na">useValue</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://localhost:3000</span><span class="dl">'</span><span class="p">}),</span>
+      <span class="nx">provide</span><span class="p">(</span><span class="nx">BASE_URL</span><span class="p">,</span> <span class="p">{</span><span class="na">useValue</span><span class="p">:</span> <span class="nx">baseUrl</span><span class="p">}),</span>
+    <span class="p">],</span>
+    <span class="na">providers</span><span class="p">:</span> <span class="p">[</span>
+      <span class="nx">provide</span><span class="p">(</span><span class="nx">REQUEST_URL</span><span class="p">,</span> <span class="p">{</span><span class="na">useValue</span><span class="p">:</span> <span class="nx">url</span><span class="p">}),</span>
+      <span class="nx">NODE_ROUTER_PROVIDERS</span><span class="p">,</span>
+      <span class="nx">NODE_HTTP_PROVIDERS</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="na">async</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="na">preboot</span><span class="p">:</span> <span class="kc">false</span> <span class="c1">// { appRoot: 'app' } // your top level app component selector</span>
+  <span class="p">};</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="dl">'</span><span class="s1">index</span><span class="dl">'</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>We also tell express to render our app from the index.html above</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Serve static files</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kd">static</span><span class="p">(</span><span class="nx">ROOT</span><span class="p">,</span> <span class="p">{</span><span class="na">index</span><span class="p">:</span> <span class="kc">false</span><span class="p">}));</span></code></pre></figure>
+
+<p>You can also pass in routes to the app by doing the following</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Routes</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span> <span class="nx">ngApp</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="dl">'</span><span class="s1">/about</span><span class="dl">'</span><span class="p">,</span> <span class="nx">ngApp</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="dl">'</span><span class="s1">/home</span><span class="dl">'</span><span class="p">,</span> <span class="nx">ngApp</span><span class="p">);</span></code></pre></figure>
+
+<p>Finally you make your app listen on a specific <em>port</em>. This will launch your express app and put it live under this port.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Server</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Listen on http://localhost:3000</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>This might be a good time and look at the starter full <a href="https://github.com/angular/universal-starter/blob/master/src/server.ts">server.ts file</a></p>
+
+<h3 id="client-bootsrap-and-preboot-done">Client bootsrap and preboot done()</h3>
+
+<p>On our <em>client.ts</em> file the code looks maybe more familiar to a normal Angular2 app with one detail that we mentioned earlier. The client needs to tell <strong>preboot</strong> that it finished bootstrapping and that preboot can then start playing back the events that recorded while the client was <em>bootstraping</em>, also bindings are imported from angular-universal like in the server example.</p>
+
+<p>This is actually the whole <em>client.ts</em> file :</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="dl">'</span><span class="s1">angular2-universal/polyfills</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span><span class="nx">bootstrap</span><span class="p">,</span> <span class="nx">enableProdMode</span><span class="p">,</span> <span class="nx">BROWSER_ROUTER_PROVIDERS</span><span class="p">,</span> <span class="nx">BROWSER_HTTP_PROVIDERS</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">angular2-universal</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span><span class="nx">App</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./app/app.component</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">enableProdMode</span><span class="p">();</span>
+<span class="nx">bootstrap</span><span class="p">(</span><span class="nx">App</span><span class="p">,</span> <span class="p">[</span>
+  <span class="p">...</span><span class="nx">BROWSER_ROUTER_PROVIDERS</span><span class="p">,</span>
+  <span class="p">...</span><span class="nx">BROWSER_HTTP_PROVIDERS</span>
+<span class="p">]);</span></code></pre></figure>
+
+<h2 id="the-app">The app</h2>
+
+<p>In all of this your question about this might be “What about the app? Should anything Universal specific be done there?”. The answer to this is “no” but there are some things that is important to be aware of.</p>
+
+<p>The app remains just an Angular2 app and nothing Universal specific is done there. But there are some best practices for angular universal that should be taken in consideration when building the app.</p>
+
+<p>There are especially two key aspects of a server side app to take in mind.</p>
+
+<h3 id="dont-manipulate-native-elements-directly-use-the-rendered-element-instead">Don’t manipulate native elements directly. Use the rendered element instead</h3>
+
+<p>This looks something like this</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">constructor</span><span class="p">(</span><span class="nx">element</span><span class="p">:</span> <span class="nx">ElementRef</span><span class="p">,</span> <span class="nx">renderer</span><span class="p">:</span> <span class="nx">Renderer</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">renderer</span><span class="p">.</span><span class="nx">setElementStyle</span><span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">nativeElement</span><span class="p">,</span> <span class="dl">'</span><span class="s1">font-size</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">x-large</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<h3 id="know-the-difference-of-attributes-and-properties-and-how-they-relate-to-the-dom">Know the difference of attributes and properties and how they relate to the DOM</h3>
+
+<p>It’s important that you know the difference between attributes and properties once the browser parses your HTML. <a href="http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html">A good question on stackoverflow regarding this</a></p>
+
+<p>It’s especially important maybe to know that relation between attributes and properties and attributes is not always a one-to-one relationship as shown in the value attribute example.</p>
+
+<h3 id="dont-use-any-of-the-browser-types-provided-in-the-global-namespace">Don’t use any of the browser types provided in the global namespace</h3>
+
+<p>Global namespace browser types like document or navigator don’t exist outside of the browser so when trying to get access to them when doing server side rendering in nodejs will result in some errors.</p>
+
+<h3 id="keep-your-directives-stateless-as-much-as-possible">Keep your directives stateless as much as possible</h3>
+
+<p>For stateful directives, you may need to provide an attribute that reflects the corresponding property with an initial string value such as url in img tag. For the native <code class="highlighter-rouge">&lt;img src=""&gt;</code> element the src attribute is reflected as the src property of the element type HTMLImageElement.</p>
+
+<h2 id="wrapping-up">Wrapping up</h2>
+
+<p>There are many exciting things happening with Angular2, server side rendering is definitely one of them.</p>
+
+<p>At this moment Angular Universal is at version <em>0.98</em> so there are still quite a lot of small issues open, but it already provides a really stable solution for server side rendering. If you are reading this than it looks like it works as this website is running on express with angular universal fetching data from a CMS in the background.</p>
+
+<p>Its already much better than anything we had before that’s for sure. You can follow the issues in the repo <a href="https://github.com/angular/universal/issues">here</a></p>
+
+<p>But the options and flexibility that come with the render layer of Angular2 does not stop at server rendering. You might also be interested and read about <strong>Service workers</strong>, <strong>Web Workers</strong> or <strong>Angular2 with Electron</strong> to deliver desktop apps, or even <strong>Angular2 with NativeScript</strong> for mobile native app development. Bellow are some links to some of these topics :</p>
+
+<ul>
+  <li><a href="https://github.com/angular/angular/blob/master/modules/angular2/docs/web_workers/web_workers.md">Web Workers in angular2</a></li>
+  <li><a href="https://github.com/angular/progressive">Progressive angular app</a></li>
+  <li><a href="https://auth0.com/blog/2015/12/15/create-a-desktop-app-with-angular-2-and-electron/">Create a desktop app with angular2 and electron</a></li>
+  <li><a href="https://nativescript.github.io/nativescript-angular-guide/">NativeScript and angular2</a></li>
+</ul>
+
+          </div>
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/home?status=Server+side+rendering+in+Angular2+with+Angular+Universal%20-%20/posts/server-side-rendering-in-angular2-with-angular-universal%20by%20@joaogarin" title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=/posts/server-side-rendering-in-angular2-with-angular-universal" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"/></svg>
+            </a>
+            <a href="https://plus.google.com/share?url=/posts/server-side-rendering-in-angular2-with-angular-universal" title="Share on Google+" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 128 128"><path d="M40.7 55.9v16.1c0 0 15.6 0 22 0C59.2 82.5 53.8 88.2 40.7 88.2c-13.3 0-23.7-10.8-23.7-24.2s10.4-24.2 23.7-24.2c7.1 0 11.6 2.5 15.8 5.9 3.3-3.3 3.1-3.8 11.6-11.9 -7.2-6.6-16.8-10.6-27.4-10.6C18.2 23.3 0 41.5 0 64c0 22.5 18.2 40.7 40.7 40.7 33.6 0 41.8-29.3 39-48.8H40.7zM113.9 56.7V42.6h-10.1v14.1H89.4v10.1h14.5v14.5h10.1V66.8H128V56.7H113.9z"/></svg>
+            </a>
+          </div>
+
+          
+            <div id="disqus_thread" class="article-comments"></div>
+            <script src="https://joaogarinblog.disqus.com/embed.js" async defer></script>
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+          
+        </article>
+        <footer class="footer scrollappear">
+  <p>
+    This site is powered by Jekyll and Chalk theme. All content rights reserved to 
+    <a href="/about" title="About me">Joao Garin</a>.
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+
+<script src="/assets/vendor-130c9c254effc51f3283620bc635851da7b99c20901216948f11ba72ee13317f.js" type="text/javascript"></script>
+
+
+  <script src="/assets/webfonts-96493456d319d1bf419afdf8701552d4d486fee6afd304897d4fd81eb4e0cc0b.js" type="text/javascript"></script>
+
+
+
+  <script src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js" type="text/javascript"></script>
+
+
+<script src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js" type="text/javascript"></script>
+
+</body>
+</html>

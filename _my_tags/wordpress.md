@@ -1,4 +1,0 @@
----
-slug: wordpress
-name: Wordpress
----

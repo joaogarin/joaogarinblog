@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>joaogarin | Drupal GraphQL with Contenta, Angular and Apollo Part 2 - Queries</title>
+  <meta name="description" content="Using Apollo Angular to query entities from Contenta and GraphQL.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="Drupal GraphQL with Contenta, Angular and Apollo Part 2 - Queries">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="/posts/drupal-graphql-with-angular-and-apollo-part2">
+  <meta property="og:description" content="Using Apollo Angular to query entities from Contenta and GraphQL.">
+  <meta property="og:site_name" content="joaogarin">
+  <meta property="og:image" content="/posts/net.jpg">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="/posts/drupal-graphql-with-angular-and-apollo-part2">
+  <meta name="twitter:title" content="Drupal GraphQL with Contenta, Angular and Apollo Part 2 - Queries">
+  <meta name="twitter:description" content="Using Apollo Angular to query entities from Contenta and GraphQL.">
+  <meta name="twitter:image" content="/posts/net.jpg">
+
+  <link href="/feed.xml" type="application/rss+xml" rel="alternate" title="joaogarin Last 10 blog posts" />
+
+  
+
+  
+    <link rel="icon" type="image/x-icon" href="/assets/favicon-light-a98c41efc5ed9fcc06ac664c9e2f7a9b3c3b2e0a52357d221fe382f6f4abc8fc.ico">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon-light-87d1f2a3a19b1500e5c1626a0492025ca5f7f97d24540dc5900288e92112925a.png">
+    <link rel="stylesheet" type="text/css" href="/assets/light-bb1553a18d0f1ccfe1aabc010584c49b4277a88503216b78906ba719e30019c1.css">
+  
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="joaogarin">joaogarin</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-about">
+  <use href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about" xlink:href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://twitter.com/joaogarin" rel="noreferrer noopener" target="_blank" title="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-twitter">
+  <use href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter" xlink:href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://www.facebook.com/joao.garin" rel="noreferrer noopener" target="_blank" title="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-facebook">
+  <use href="/assets/facebook-72c99b26d37bee65607720abb23d26b44ef30cca1187f98b0d9305be1230b1bf.svg#icon-facebook" xlink:href="/assets/facebook-72c99b26d37bee65607720abb23d26b44ef30cca1187f98b0d9305be1230b1bf.svg#icon-facebook"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://github.com/joaogarin" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-github">
+  <use href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github" xlink:href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="https://www.linkedin.com/in/joao-garin-9b118525" rel="noreferrer noopener" target="_blank" title="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-linkedin">
+  <use href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin" xlink:href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="/feed.xml" rel="noreferrer noopener" target="_blank" title="RSS">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-rss">
+  <use href="/assets/rss-541ec5cea9cefd10d2fcfec01888f3f231a8829940249835fa7b7b3a12ae0d0d.svg#icon-rss" xlink:href="/assets/rss-541ec5cea9cefd10d2fcfec01888f3f231a8829940249835fa7b7b3a12ae0d0d.svg#icon-rss"></use>
+</svg>
+
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+        <article class="article scrollappear">
+          <header class="article-header">
+            <h1>Drupal GraphQL with Contenta, Angular and Apollo Part 2 - Queries</h1>
+            <p>Using Apollo Angular to query entities from Contenta and GraphQL.</p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                January 7, 2018
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  11 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tag/web">web</a>
+                
+                  <a href="/tag/angular">angular</a>
+                
+                  <a href="/tag/javascript">javascript</a>
+                
+                  <a href="/tag/drupal">drupal</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <p><a href="/assets/posts/queries-cec538b6b7fa3d5a2b5932aed4f4eeda331eddf7086f0654e69ae722a7393fad.jpg" data-rjs="/assets/posts/queries-cec538b6b7fa3d5a2b5932aed4f4eeda331eddf7086f0654e69ae722a7393fad.jpg" class="fluidbox-trigger">
+  <img src="/assets/posts/queries-cec538b6b7fa3d5a2b5932aed4f4eeda331eddf7086f0654e69ae722a7393fad.jpg" alt="queries" />
+</a></p>
+
+<p>This is the continuation of a series of blog posts explaining how to use <a href="http://www.contentacms.org/">Contenta</a> and <a href="http://graphql.org/">GraphQL</a> with <a href="https://angular.io/">Angular</a>.</p>
+
+<p>In the <a href="/posts/drupal-graphql-with-angular-and-apollo-part1">previous post</a> we learned how to configure Authentication, and now we will see how to use that authentication to query and mutate data in our GraphQL backend using <a href="https://github.com/apollographql/apollo-angular">Apollo Angular</a>.</p>
+
+<h2 id="full-code-samples">Full code samples</h2>
+
+<p>The code samples can be found in Github. It includes all the frontend code and also the code for the custom mutations to be used with Drupal GraphQL.</p>
+
+<p><a href="https://github.com/joaogarin/drupal-graphql-with-angular-and-apollo">Frontend code</a>
+<a href="https://github.com/joaogarin/graphql_custom_mutations">Custom GraphQL mutation module</a></p>
+
+<h2 id="install-apollo-angular">Install Apollo Angular</h2>
+
+<p>The first step is to install Apollo Angular. Following the <a href="https://www.apollographql.com/docs/angular/">Instructions on the official docs site</a> we start by installing it via npm :</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">npm <span class="nb">install </span>apollo-angular apollo-angular-link-http apollo-client apollo-cache-inmemory graphql-tag graphql <span class="nt">--save</span></code></pre></figure>
+
+<p>Next we import the ApolloModule into our app’s root module (app.module.ts) and configure the Apollo Client. The Client is what we will be using to call queries, mutations and so on to our graphql backend. Because we will be setting up our client to use authentication we need to configure Apollo Client with a specific link (Apollo Link) that will append the token we receive from Drupal (see previous authentication blog post) to all of the requests being made. You can find more information about Authentication in the <a href="https://www.apollographql.com/docs/angular/recipes/authentication.html">official documentation for Apollo Angular</a></p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="p">{</span> <span class="nx">Apollo</span><span class="p">,</span> <span class="nx">ApolloModule</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">apollo-angular</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">HttpLink</span><span class="p">,</span> <span class="nx">HttpLinkModule</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">apollo-angular-link-http</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">setContext</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">apollo-link-context</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">InMemoryCache</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">apollo-cache-inmemory</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">NgModule</span><span class="p">({</span>
+  <span class="na">declarations</span><span class="p">:</span> <span class="p">[</span>
+    <span class="nx">AppComponent</span><span class="p">,</span>
+  <span class="p">],</span>
+  <span class="na">imports</span><span class="p">:</span> <span class="p">[</span>
+    <span class="nx">BrowserModule</span><span class="p">,</span>
+    <span class="nx">HttpClientModule</span><span class="p">,</span>
+    <span class="nx">OAuthModule</span><span class="p">.</span><span class="nx">forRoot</span><span class="p">(),</span>
+    <span class="nx">ApolloModule</span><span class="p">,</span>
+    <span class="nx">HttpLinkModule</span><span class="p">,</span>
+  <span class="p">],</span>
+  <span class="na">providers</span><span class="p">:</span> <span class="p">[],</span>
+  <span class="na">bootstrap</span><span class="p">:</span> <span class="p">[</span><span class="nx">AppComponent</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">AppModule</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">apollo</span><span class="p">:</span> <span class="nx">Apollo</span><span class="p">,</span>
+    <span class="nx">httpLink</span><span class="p">:</span> <span class="nx">HttpLink</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">httpLink</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> <span class="na">uri</span><span class="p">:</span> <span class="s2">`</span><span class="p">${</span><span class="nx">environment</span><span class="p">.</span><span class="nx">contenta_url</span><span class="p">}${</span><span class="nx">environment</span><span class="p">.</span><span class="nx">graphql</span><span class="p">}</span><span class="s2">`</span><span class="p">});</span>
+
+    <span class="kd">const</span> <span class="nx">auth</span> <span class="o">=</span> <span class="nx">setContext</span><span class="p">((</span><span class="nx">_</span><span class="p">,</span> <span class="p">{</span> <span class="nx">headers</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="c1">// get the authentication token from local storage if it exists</span>
+      <span class="kd">const</span> <span class="nx">token</span> <span class="o">=</span> <span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">token</span><span class="dl">'</span><span class="p">);</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">token</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">{};</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">{</span>
+          <span class="na">headers</span><span class="p">:</span> <span class="k">new</span> <span class="nx">HttpHeaders</span><span class="p">().</span><span class="nx">append</span><span class="p">(</span><span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">,</span> <span class="s2">`Bearer </span><span class="p">${</span><span class="nx">token</span><span class="p">}</span><span class="s2">`</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">)</span>
+        <span class="p">};</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+
+    <span class="nx">apollo</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
+      <span class="na">link</span><span class="p">:</span> <span class="nx">auth</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">http</span><span class="p">),</span>
+      <span class="na">cache</span><span class="p">:</span> <span class="k">new</span> <span class="nx">InMemoryCache</span><span class="p">(),</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>There are a couple of things going on here, let’s break this down into pieces :</p>
+
+<p>We configure our http link by providing our backend api URL (contenta graphql endpoint). We then create a authentication context that will append our token to each http request going out with the HTTP header “Authorization” bearer and proving our token (previously saved in localStorage).</p>
+
+<h3 id="saving-our-token">Saving our token</h3>
+
+<p>In our previous blog post we had a little snippet to kickstart our authentication, we need to adapt this to save our token in localStorage so that it is available for us here. In our app.component.ts change the method “configureWithNewConfigApi” to :</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">private</span> <span class="nx">configureWithNewConfigApi</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">oauthService</span><span class="p">.</span><span class="nx">configure</span><span class="p">(</span><span class="nx">authConfig</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">oauthService</span><span class="p">.</span><span class="nx">setStorage</span><span class="p">(</span><span class="nx">sessionStorage</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">oauthService</span><span class="p">.</span><span class="nx">tryLogin</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">_</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// save the token in localstorage</span>
+    <span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">token</span><span class="dl">'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">oauthService</span><span class="p">.</span><span class="nx">getAccessToken</span><span class="p">());</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">authenticated</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">oauthService</span><span class="p">.</span><span class="nx">hasValidAccessToken</span><span class="p">();</span>
+  <span class="p">});</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>We also need to make sure to dispose it when we logout, so adapt the logout() method with :</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">public</span> <span class="nx">logoff</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">oauthService</span><span class="p">.</span><span class="nx">logOut</span><span class="p">();</span>
+  <span class="nx">localStorage</span><span class="p">.</span><span class="nx">removeItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">token</span><span class="dl">'</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">authenticated</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="c1">// reset the store after that</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">apollo</span><span class="p">.</span><span class="nx">getClient</span><span class="p">().</span><span class="nx">resetStore</span><span class="p">();</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>ok! At this point Apollo is fully configured, we can start making queries. Also notice that by doing it this way we need to make sure that the roles that we are using (see previous blog post about Authentication) have the needed access rights to read / write or whatever you need to do to the correct entities.</p>
+
+<h2 id="querying">Querying</h2>
+
+<p>Querying with Apollo is extremely easy, I suggest getting started by playing with the GraphiQL playground and experiment with queries structure / syntax first in order to make sure the queries work there before doing it on the frontend.</p>
+
+<p>For this example I will assume a content type called “Client” exists in the Drupal installation (just setup a content type with name Client, machine name should be client). Also this content type should have some fields created :</p>
+
+<ul>
+  <li>email</li>
+  <li>telephone</li>
+</ul>
+
+<h3 id="querying-a-list-of-clients">Querying a list of clients</h3>
+
+<p>Before I do any frontend work (like mentioned above) I tested my query in GraphiQL Playground, that’s good because it provides autocomplete for fields that are available in any entity, relationships etc..Once that’s done I can move to the frontend app.</p>
+
+<p><a href="/assets/posts/graphiql-ffc264686a21686b63a44bf943d8fc4159dd509aa5b9021b53e8f8cb865d3631.png" data-rjs="/assets/posts/graphiql-ffc264686a21686b63a44bf943d8fc4159dd509aa5b9021b53e8f8cb865d3631.png" class="fluidbox-trigger">
+  <img src="/assets/posts/graphiql-ffc264686a21686b63a44bf943d8fc4159dd509aa5b9021b53e8f8cb865d3631.png" alt="graphiql" />
+</a></p>
+
+<p>Now that the query works in GraphiQl the first step we can do to start working with clients in the frontend is creating a model for Clients. Inside src/app/ create a folder “models” with a file called client.model.ts :</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">export</span> <span class="kr">interface</span> <span class="nx">Client</span> <span class="p">{</span>
+    <span class="nl">entityId</span><span class="p">:</span> <span class="nx">number</span><span class="p">,</span>
+    <span class="nx">entityLabel</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+    <span class="nl">email</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+    <span class="nl">telephone</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Now in the app.component.ts (our root component for simplicity sake) let’s do a simple query to fetch clients. Our query will return an observable of our response (a list of clients) we can then pipe this in our template using the <code class="highlighter-rouge">async</code> pipe.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">...</span>
+
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Observable</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">rxjs/observable</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Apollo</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">apollo-angular</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">gql</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">graphql-tag</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">app-root</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">templateUrl</span><span class="p">:</span> <span class="dl">'</span><span class="s1">./app.component.html</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">styleUrls</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">./app.component.css</span><span class="dl">'</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">AppComponent</span> <span class="p">{</span>
+  <span class="nx">title</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">app</span><span class="dl">'</span><span class="p">;</span>
+  <span class="nx">authenticated</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="nl">clients</span><span class="p">:</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">Client</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">;</span>
+
+  <span class="nx">query</span> <span class="o">=</span> <span class="nx">gql</span><span class="s2">`{
+  nodeQuery(limit: 5, offset: 0, filter: {type: "Client"}) {
+    entities {
+      entityId,
+      entityLabel,
+      entityUrl {
+        path
+      },
+      entityPublished
+      ... on NodeClient {
+        telephone,
+        email
+      }
+    }
+  }
+}`</span><span class="p">;</span>
+
+  <span class="p">...</span>
+
+  <span class="kd">constructor</span><span class="p">(</span><span class="kr">private</span> <span class="nx">oauthService</span><span class="p">:</span> <span class="nx">OAuthService</span><span class="p">,</span> <span class="kr">public</span> <span class="nx">apollo</span><span class="p">:</span> <span class="nx">Apollo</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">configureWithNewConfigApi</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="p">...</span>
+
+  <span class="nx">runQuery</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Sample query</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">clients</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">apollo</span> <span class="p">.</span><span class="nx">query</span><span class="p">({</span> <span class="na">query</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">query</span><span class="p">}).</span><span class="nx">map</span><span class="p">(</span><span class="nx">q</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">q</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="dl">'</span><span class="s1">nodeQuery</span><span class="dl">'</span><span class="p">][</span><span class="dl">'</span><span class="s1">entities</span><span class="dl">'</span><span class="p">];</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+  <span class="p">...</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>In our template we append a little button to run the Query :</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">...
+<span class="nt">&lt;button</span> <span class="na">(click)=</span><span class="s">"runQuery()"</span><span class="nt">&gt;</span>query<span class="nt">&lt;/button&gt;</span>
+...
+}</code></pre></figure>
+
+<p>We query our data using Apollo Client and wrapping our graphql in graphql-tag. The query is exactly the same we used in the GraphiQL playground. We map the response and get the entities out of the data received and assign it to our observable of type <code class="highlighter-rouge">clients: Observable&lt;Client[]&gt;;</code>.</p>
+
+<p>In our template we then can easily list these out :</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">...
+<span class="nt">&lt;ul&gt;</span>
+  <span class="nt">&lt;li</span> <span class="na">*ngFor=</span><span class="s">"let client of clients | async"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div&gt;</span>
+      Name: 
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div&gt;</span>
+      Email: 
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div&gt;</span>
+      Telephone: 
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span>
+...
+}</code></pre></figure>
+
+<h2 id="all-together-now">All together now</h2>
+
+<p>The full app.module.ts with authentication and apollo client and link configured looks like this :</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="p">{</span> <span class="nx">environment</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./../environments/environment</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">BrowserModule</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/platform-browser</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">NgModule</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">HttpClientModule</span><span class="p">,</span> <span class="nx">HttpHeaders</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/common/http</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">AppComponent</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./app.component</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">OAuthModule</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">angular-oauth2-oidc</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Apollo</span><span class="p">,</span> <span class="nx">ApolloModule</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">apollo-angular</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">HttpLink</span><span class="p">,</span> <span class="nx">HttpLinkModule</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">apollo-angular-link-http</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">setContext</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">apollo-link-context</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">InMemoryCache</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">apollo-cache-inmemory</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">NgModule</span><span class="p">({</span>
+  <span class="na">declarations</span><span class="p">:</span> <span class="p">[</span>
+    <span class="nx">AppComponent</span><span class="p">,</span>
+  <span class="p">],</span>
+  <span class="na">imports</span><span class="p">:</span> <span class="p">[</span>
+    <span class="nx">BrowserModule</span><span class="p">,</span>
+    <span class="nx">HttpClientModule</span><span class="p">,</span>
+    <span class="nx">OAuthModule</span><span class="p">.</span><span class="nx">forRoot</span><span class="p">(),</span>
+    <span class="nx">ApolloModule</span><span class="p">,</span>
+    <span class="nx">HttpLinkModule</span><span class="p">,</span>
+  <span class="p">],</span>
+  <span class="na">providers</span><span class="p">:</span> <span class="p">[],</span>
+  <span class="na">bootstrap</span><span class="p">:</span> <span class="p">[</span><span class="nx">AppComponent</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">AppModule</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">apollo</span><span class="p">:</span> <span class="nx">Apollo</span><span class="p">,</span>
+    <span class="nx">httpLink</span><span class="p">:</span> <span class="nx">HttpLink</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">httpLink</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> <span class="na">uri</span><span class="p">:</span> <span class="s2">`</span><span class="p">${</span><span class="nx">environment</span><span class="p">.</span><span class="nx">contenta_url</span><span class="p">}${</span><span class="nx">environment</span><span class="p">.</span><span class="nx">graphql</span><span class="p">}</span><span class="s2">`</span> <span class="c1">//?XDEBUG_SESSION_START=PHPSTORM </span>
+   <span class="p">});</span>
+
+    <span class="kd">const</span> <span class="nx">auth</span> <span class="o">=</span> <span class="nx">setContext</span><span class="p">((</span><span class="nx">_</span><span class="p">,</span> <span class="p">{</span> <span class="nx">headers</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="c1">// get the authentication token from local storage if it exists</span>
+      <span class="kd">const</span> <span class="nx">token</span> <span class="o">=</span> <span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">token</span><span class="dl">'</span><span class="p">);</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">token</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">{};</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">{</span>
+          <span class="na">headers</span><span class="p">:</span> <span class="k">new</span> <span class="nx">HttpHeaders</span><span class="p">().</span><span class="nx">append</span><span class="p">(</span><span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">,</span> <span class="s2">`Bearer </span><span class="p">${</span><span class="nx">token</span><span class="p">}</span><span class="s2">`</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">)</span>
+        <span class="p">};</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+
+    <span class="nx">apollo</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
+      <span class="na">link</span><span class="p">:</span> <span class="nx">auth</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">http</span><span class="p">),</span>
+      <span class="na">cache</span><span class="p">:</span> <span class="k">new</span> <span class="nx">InMemoryCache</span><span class="p">(),</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Our root app.component.ts where we have our query for clients :</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="p">{</span> <span class="nx">Client</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./models/Client</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">OAuthService</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">angular-oauth2-oidc</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">JwksValidationHandler</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">angular-oauth2-oidc</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">authConfig</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./auth.config</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Observable</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">rxjs/observable</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Apollo</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">apollo-angular</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">gql</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">graphql-tag</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">app-root</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">templateUrl</span><span class="p">:</span> <span class="dl">'</span><span class="s1">./app.component.html</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">styleUrls</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">./app.component.css</span><span class="dl">'</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">AppComponent</span> <span class="p">{</span>
+  <span class="nx">title</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">app</span><span class="dl">'</span><span class="p">;</span>
+  <span class="nx">authenticated</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="nl">clients</span><span class="p">:</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">Client</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">;</span>
+
+  <span class="nx">query</span> <span class="o">=</span> <span class="nx">gql</span><span class="s2">`{
+  nodeQuery(limit: 5, offset: 0, filter: {type: "Client"}) {
+    entities {
+      entityId,
+      entityLabel,
+      entityUrl {
+        path
+      },
+      entityPublished
+      ... on NodeClient {
+        telephone,
+        email
+      }
+    }
+  }
+}`</span><span class="p">;</span>
+
+  <span class="kd">constructor</span><span class="p">(</span><span class="kr">private</span> <span class="nx">oauthService</span><span class="p">:</span> <span class="nx">OAuthService</span><span class="p">,</span> <span class="kr">public</span> <span class="nx">apollo</span><span class="p">:</span> <span class="nx">Apollo</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">configureWithNewConfigApi</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="nx">runQuery</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Sample query</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">clients</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">apollo</span> <span class="p">.</span><span class="nx">query</span><span class="p">({</span> <span class="na">query</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">query</span><span class="p">}).</span><span class="nx">map</span><span class="p">(</span><span class="nx">q</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">q</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="dl">'</span><span class="s1">nodeQuery</span><span class="dl">'</span><span class="p">][</span><span class="dl">'</span><span class="s1">entities</span><span class="dl">'</span><span class="p">];</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="kr">private</span> <span class="nx">configureWithNewConfigApi</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">oauthService</span><span class="p">.</span><span class="nx">configure</span><span class="p">(</span><span class="nx">authConfig</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">oauthService</span><span class="p">.</span><span class="nx">setStorage</span><span class="p">(</span><span class="nx">sessionStorage</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">oauthService</span><span class="p">.</span><span class="nx">tryLogin</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">_</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="c1">// save the token in localstorage</span>
+      <span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">token</span><span class="dl">'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">oauthService</span><span class="p">.</span><span class="nx">getAccessToken</span><span class="p">());</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">authenticated</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">oauthService</span><span class="p">.</span><span class="nx">hasValidAccessToken</span><span class="p">();</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="kr">public</span> <span class="nx">login</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">oauthService</span><span class="p">.</span><span class="nx">initImplicitFlow</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="kr">public</span> <span class="nx">logoff</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">oauthService</span><span class="p">.</span><span class="nx">logOut</span><span class="p">();</span>
+    <span class="nx">localStorage</span><span class="p">.</span><span class="nx">removeItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">token</span><span class="dl">'</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">authenticated</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="c1">// reset the store after that</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">apollo</span><span class="p">.</span><span class="nx">getClient</span><span class="p">().</span><span class="nx">resetStore</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>and our template for this component where we render the full list of clients we get from graphql :</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;h1&gt;</span>
+  Hello Contenta Graphql
+<span class="nt">&lt;/h1&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">*ngIf=</span><span class="s">"authenticated;else unauth"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;h2&gt;</span>Status : Authenticated<span class="nt">&lt;/h2&gt;</span>
+  <span class="nt">&lt;div&gt;</span>
+    <span class="nt">&lt;button</span> <span class="na">*ngIf=</span><span class="s">"authenticated"</span> <span class="na">class=</span><span class="s">"btn btn-default"</span> <span class="na">(click)=</span><span class="s">"logoff()"</span><span class="nt">&gt;</span>
+      Logout
+    <span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;ng-template</span> <span class="na">#unauth</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;h2&gt;</span>Status : Anonymous<span class="nt">&lt;/h2&gt;</span>
+  <span class="nt">&lt;div&gt;</span>
+    <span class="nt">&lt;button</span> <span class="na">*ngIf=</span><span class="s">"!authenticated"</span> <span class="na">class=</span><span class="s">"btn btn-default"</span> <span class="na">(click)=</span><span class="s">"login()"</span><span class="nt">&gt;</span>
+      Login
+    <span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/ng-template&gt;</span>
+
+<span class="nt">&lt;h2&gt;</span>
+  Clients
+<span class="nt">&lt;/h2&gt;</span>
+
+<span class="nt">&lt;button</span> <span class="na">(click)=</span><span class="s">"runQuery()"</span><span class="nt">&gt;</span>query<span class="nt">&lt;/button&gt;</span>
+
+<span class="nt">&lt;ul&gt;</span>
+  <span class="nt">&lt;li</span> <span class="na">*ngFor=</span><span class="s">"let client of clients | async"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div&gt;</span>
+      Name: 
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div&gt;</span>
+      Email: 
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div&gt;</span>
+      Telephone: 
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span></code></pre></figure>
+
+<p>That’s it! That’s all there is too queries with graphql and contenta using simple auth as the authentication mechanism. You can find all the things you can do with queries including creating fragments for shared parts of queries across multiple places of you app and other more advanced query features in the <a href="https://www.apollographql.com/docs/angular/">Official documentation site</a>.</p>
+
+<p>In the <a href="/posts/drupal-graphql-with-angular-and-apollo-part3">next post</a> we will see how we can do mutations using the <a href="https://github.com/drupal-graphql/graphql">Drupal GraphQL module</a> and Apollo.</p>
+
+          </div>
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/home?status=Drupal+GraphQL+with+Contenta,+Angular+and+Apollo+Part+2+-+Queries%20-%20/posts/drupal-graphql-with-angular-and-apollo-part2%20by%20@joaogarin" title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=/posts/drupal-graphql-with-angular-and-apollo-part2" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"/></svg>
+            </a>
+            <a href="https://plus.google.com/share?url=/posts/drupal-graphql-with-angular-and-apollo-part2" title="Share on Google+" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 128 128"><path d="M40.7 55.9v16.1c0 0 15.6 0 22 0C59.2 82.5 53.8 88.2 40.7 88.2c-13.3 0-23.7-10.8-23.7-24.2s10.4-24.2 23.7-24.2c7.1 0 11.6 2.5 15.8 5.9 3.3-3.3 3.1-3.8 11.6-11.9 -7.2-6.6-16.8-10.6-27.4-10.6C18.2 23.3 0 41.5 0 64c0 22.5 18.2 40.7 40.7 40.7 33.6 0 41.8-29.3 39-48.8H40.7zM113.9 56.7V42.6h-10.1v14.1H89.4v10.1h14.5v14.5h10.1V66.8H128V56.7H113.9z"/></svg>
+            </a>
+          </div>
+
+          
+            <div id="disqus_thread" class="article-comments"></div>
+            <script src="https://joaogarinblog.disqus.com/embed.js" async defer></script>
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+          
+        </article>
+        <footer class="footer scrollappear">
+  <p>
+    This site is powered by Jekyll and Chalk theme. All content rights reserved to 
+    <a href="/about" title="About me">Joao Garin</a>.
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+
+<script src="/assets/vendor-130c9c254effc51f3283620bc635851da7b99c20901216948f11ba72ee13317f.js" type="text/javascript"></script>
+
+
+  <script src="/assets/webfonts-96493456d319d1bf419afdf8701552d4d486fee6afd304897d4fd81eb4e0cc0b.js" type="text/javascript"></script>
+
+
+
+  <script src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js" type="text/javascript"></script>
+
+
+<script src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js" type="text/javascript"></script>
+
+</body>
+</html>

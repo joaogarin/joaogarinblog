@@ -1,4 +1,0 @@
----
-slug: themes
-name: Themes
----

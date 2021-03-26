@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>joaogarin | Angularjs Component method</title>
+  <meta name="description" content="Analyzing how to use components with angular 1.5+">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="Angularjs Component method">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="/posts/angular-1-component-method">
+  <meta property="og:description" content="Analyzing how to use components with angular 1.5+">
+  <meta property="og:site_name" content="joaogarin">
+  <meta property="og:image" content="/posts/comp.jpg">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="/posts/angular-1-component-method">
+  <meta name="twitter:title" content="Angularjs Component method">
+  <meta name="twitter:description" content="Analyzing how to use components with angular 1.5+">
+  <meta name="twitter:image" content="/posts/comp.jpg">
+
+  <link href="/feed.xml" type="application/rss+xml" rel="alternate" title="joaogarin Last 10 blog posts" />
+
+  
+
+  
+    <link rel="icon" type="image/x-icon" href="/assets/favicon-light-a98c41efc5ed9fcc06ac664c9e2f7a9b3c3b2e0a52357d221fe382f6f4abc8fc.ico">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon-light-87d1f2a3a19b1500e5c1626a0492025ca5f7f97d24540dc5900288e92112925a.png">
+    <link rel="stylesheet" type="text/css" href="/assets/light-bb1553a18d0f1ccfe1aabc010584c49b4277a88503216b78906ba719e30019c1.css">
+  
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="joaogarin">joaogarin</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-about">
+  <use href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about" xlink:href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://twitter.com/joaogarin" rel="noreferrer noopener" target="_blank" title="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-twitter">
+  <use href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter" xlink:href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://www.facebook.com/joao.garin" rel="noreferrer noopener" target="_blank" title="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-facebook">
+  <use href="/assets/facebook-72c99b26d37bee65607720abb23d26b44ef30cca1187f98b0d9305be1230b1bf.svg#icon-facebook" xlink:href="/assets/facebook-72c99b26d37bee65607720abb23d26b44ef30cca1187f98b0d9305be1230b1bf.svg#icon-facebook"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://github.com/joaogarin" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-github">
+  <use href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github" xlink:href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="https://www.linkedin.com/in/joao-garin-9b118525" rel="noreferrer noopener" target="_blank" title="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-linkedin">
+  <use href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin" xlink:href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="/feed.xml" rel="noreferrer noopener" target="_blank" title="RSS">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-rss">
+  <use href="/assets/rss-541ec5cea9cefd10d2fcfec01888f3f231a8829940249835fa7b7b3a12ae0d0d.svg#icon-rss" xlink:href="/assets/rss-541ec5cea9cefd10d2fcfec01888f3f231a8829940249835fa7b7b3a12ae0d0d.svg#icon-rss"></use>
+</svg>
+
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+        <article class="article scrollappear">
+          <header class="article-header">
+            <h1>Angularjs Component method</h1>
+            <p>Analyzing how to use components with angular 1.5+</p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                April 29, 2016
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  9 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tag/web">web</a>
+                
+                  <a href="/tag/angular">angular</a>
+                
+                  <a href="/tag/javascript">javascript</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <p><a href="/assets/posts/comp-bbb63291424ef8fa01984f08f5abe131f6bc7c5fe2e6ba8b415df36fe9828e95.jpg" data-rjs="/assets/posts/comp-bbb63291424ef8fa01984f08f5abe131f6bc7c5fe2e6ba8b415df36fe9828e95.jpg" class="fluidbox-trigger">
+  <img src="/assets/posts/comp-bbb63291424ef8fa01984f08f5abe131f6bc7c5fe2e6ba8b415df36fe9828e95.jpg" alt="Angularjs components" />
+</a></p>
+
+<p>If you are anything like me, you love markup and HTML. It was one of the first things that got me into web development in the first place, the idea that with some of this syntax I could bring ideas to life in the browser and put it together with CSS and Javascript and create real experiences for users in apps or websites.</p>
+
+<p>Now if you are really like me you like one specific type of markup and that is <em>semantic markup</em>. Markup that really makes sense and tells the story when you see it instead of distracting you will the layout implementation details. Think of it this way. What looks best to you :</p>
+
+<h2 id="normal-markup">Normal markup</h2>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">”friend”</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">”friend__image”</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">”friend__name”</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre></figure>
+
+<h2 id="semantic-markup">Semantic markup</h2>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;friend</span> <span class="na">name=</span><span class="s">”friend-name”</span> <span class="na">image=</span><span class="s">”friend-image”</span><span class="nt">&gt;&lt;/friend&gt;</span></code></pre></figure>
+
+<p>Call me crazy I do really like the second one so much better. This is a very simple example but think of more complex set of inner markup for this “friend” item and it takes this into a much more drastic proportion.</p>
+
+<h2 id="enter-angular">Enter Angular</h2>
+
+<p>This was when Angular striked to me as a game changer. I could actually start doing this by creating directives in Angular1 and start using semantic markup in my code, and it just made the code look so good and so much simpler than what it normally would.</p>
+
+<p>This is what a typical directive would look like</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="dl">'</span><span class="s1">docsSimpleDirective</span><span class="dl">'</span><span class="p">,</span> <span class="p">[])</span>
+<span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="dl">'</span><span class="s1">Controller</span><span class="dl">'</span><span class="p">,</span> <span class="p">[</span><span class="dl">'</span><span class="s1">$scope</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">$scope</span><span class="p">.</span><span class="nx">customer</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Naomi</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">address</span><span class="p">:</span> <span class="dl">'</span><span class="s1">1600 Amphitheatre</span><span class="dl">'</span>
+  <span class="p">};</span>
+<span class="p">}])</span>
+<span class="p">.</span><span class="nx">directive</span><span class="p">(</span><span class="dl">'</span><span class="s1">myCustomer</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="na">template</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Name:  Address: </span><span class="dl">'</span>
+  <span class="p">};</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>You can then do this in your HTML</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">ng-controller=</span><span class="s">"Controller"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;my-customer&gt;&lt;/my-customer&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre></figure>
+
+<p>That looks quite good right? That’s what I am talking about. Using markup that makes sense and really explains what’s under it. without giving all the layout implementation details.</p>
+
+<p><strong>Note :</strong> I am taking this snippet from the <a href="https://docs.angularjs.org/guide/directive">documentation of angular1 for directives</a> so it has a couple of things you should not be doing like reaching to $scope but that is out of the purpose of this blog post.</p>
+
+<h3 id="but-directives-are-hard">But directives are hard</h3>
+
+<p>While that above sample looks pretty straightforward and okay to understand. It already introduces the concept of controller which is where the data actually comes from and all of the sudden you have 3 things you need to make in order to have this little semantic markup. Sounds a little bit too much.</p>
+
+<p>But when I say that directives are hard it’s not just that you have to actually make this but they are really kind of hard to understand and some of what I think makes them complex are :</p>
+
+<ul>
+  <li>Creating new scope (Isolated scope) vs inheriting scope from the controller</li>
+  <li>Bind to element, attribute, class name or comment with the <strong>restrict</strong> key word</li>
+  <li>Link, PreLink, PostLink functions can make it confusing</li>
+</ul>
+
+<h2 id="angular-15-and-the-component-method">Angular 1.5 and the component() method</h2>
+
+<p>Recently many frameworks have adopted the component approach, where you can compose your app of these simple components that contain other components. It makes apps easier to reason about, simpler to write, more fun and intuitive. It’s all wins.</p>
+
+<p>Angular 1.5 introduces components with the component() method. Put this together with one way data binding also already introduced into Angula 1.5 as well and this pretty much puts Angular 1 back on track with other frameworks, even Angular 2 you might say.</p>
+
+<p>Simple dumb components that are composable, get data from some kind of input and render layout, eventually emitting some events to the outside world.</p>
+
+<p>And this is how an app based on components looks like in Angular 1.5</p>
+
+<h3 id="indexhtml">Index.html</h3>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="c">&lt;!-- components match only elements --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">ng-controller=</span><span class="s">"mainCtrl as ctrl"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;b&gt;</span>Hero<span class="nt">&lt;/b&gt;&lt;br&gt;</span>
+  <span class="nt">&lt;hero-detail</span> <span class="na">hero=</span><span class="s">"ctrl.hero"</span><span class="nt">&gt;&lt;/hero-detail&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre></figure>
+
+<h3 id="mainjs">Main.js</h3>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="dl">'</span><span class="s1">heroApp</span><span class="dl">'</span><span class="p">,</span> <span class="p">[]).</span><span class="nx">controller</span><span class="p">(</span><span class="dl">'</span><span class="s1">mainCtrl</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">hero</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Spawn</span><span class="dl">'</span>
+  <span class="p">};</span>
+<span class="p">});</span></code></pre></figure>
+
+<h3 id="herodetailjs">HeroDetail.js</h3>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">HeroDetailController</span><span class="p">()</span> <span class="p">{</span>
+<span class="p">}</span>
+<span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="dl">'</span><span class="s1">heroApp</span><span class="dl">'</span><span class="p">).</span><span class="nx">component</span><span class="p">(</span><span class="dl">'</span><span class="s1">heroDetail</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">templateUrl</span><span class="p">:</span> <span class="dl">'</span><span class="s1">heroDetail.html</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">controller</span><span class="p">:</span> <span class="nx">HeroDetailController</span><span class="p">,</span>
+  <span class="na">bindings</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">hero</span><span class="p">:</span> <span class="dl">'</span><span class="s1">=</span><span class="dl">'</span>
+  <span class="p">}</span>
+<span class="p">});</span></code></pre></figure>
+
+<h3 id="herodetailhtml">heroDetail.html</h3>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;span&gt;</span>Name: <span class="nt">&lt;/span&gt;</span></code></pre></figure>
+
+<p>There are a couple of interesting things here and some interesting things under the hood that are worth going over. Let’s take a look at them one by one starting with the index.html.</p>
+
+<h3 id="elements-only">Elements only</h3>
+
+<p>Notice the comment <em>“components match only elements”</em>. That’s exactly what it means, you can not use components as you use directives matching for example attributes or class names. Components bind only to the element itself and that is the only way you should use them, directives on the other hand are meant to decorate and so they can be used in other ways. We will get to some sort of comparison for the two of them in the end.</p>
+
+<h3 id="modulecomponentname-options">module.component(name, options);</h3>
+
+<p>Notice the arguments on the component. In directives we have :</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">directive</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">fn</span><span class="p">);</span></code></pre></figure>
+
+<p>Where in the first argument we have the name of the directive and the second argument we have the directive definition function which then returned the directive definition object.</p>
+
+<p>And in components we have</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span></code></pre></figure>
+
+<p>Where we have the name in the first argument as in directives but in the second argument we have the object definition itself directly in there. This makes it a bit simpler and cleaner when writing components.</p>
+
+<h3 id="bindings">Bindings</h3>
+
+<p>In directives we have a <em>scope</em> where like we mentioned we can have inherited scope or isolated (new) scope for the directive. Usually and this has kind of become the standard you create an isolated scope for the directives and use <em>bindToController</em> to pass in the necessary properties we want to pass from the controller to the directive.</p>
+
+<p>In components we have the bindings keyword which lets us just pass in directly the properties we want from the controller removing the unnecessary boilerplate from having to go through all that scope and bindToController and just assume by default we use an isolated scope.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">bindings</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nl">hero</span><span class="p">:</span> <span class="dl">'</span><span class="s1">=</span><span class="dl">'</span>
+<span class="p">}</span></code></pre></figure>
+
+<h3 id="controller-and-controlleras">controller and controllerAs</h3>
+
+<p>Controller is defined in the same way in both worlds but in the component method controllerAs is the default with the keyword $ctrl.</p>
+
+<p>Now this can depend a little on how and where you get your controller from. Essentially there are the following options :</p>
+
+<p>1 . create the controller on the fly as we have seen before</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">{</span>
+  <span class="p">...</span>
+  <span class="nx">controller</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{}</span>
+  <span class="p">...</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>2 . Using a component from somewhere else</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">{</span>
+  <span class="p">...</span>
+  <span class="nx">controller</span><span class="p">:</span> <span class="dl">'</span><span class="s1">MyCtrl</span><span class="dl">'</span>
+  <span class="p">...</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>In this case if we want to use controllerAs we can do it by using</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">...</span>
+  <span class="nx">controller</span><span class="p">:</span> <span class="dl">'</span><span class="s1">MyCtrl</span><span class="dl">'</span><span class="p">,</span>
+  <span class="nx">controllerAs</span><span class="p">:</span> <span class="dl">'</span><span class="s1">thecontroller</span><span class="dl">'</span>
+  <span class="p">...</span></code></pre></figure>
+
+<p>This would allow us to use thecontroller.property inside the template for this component to use certain properties of the controller.</p>
+
+<p>In Angular 1.5 however we can also define controllerAs in the component method in an easier way by doing</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">{</span>
+  <span class="p">...</span>
+  <span class="nx">controller</span><span class="p">:</span> <span class="dl">'</span><span class="s1">SomeCtrl as something</span><span class="dl">'</span>
+  <span class="p">...</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Saving us the trouble of having to define controllerAs. But you can still use it in case you want and if you want to keep some backward compatibility with previous versions.</p>
+
+<ol>
+  <li>Don’t even define any controller</li>
+</ol>
+
+<p>In Angular 1.5 as we said in component() method a controllerAs is set by default to the keyword $ctrl so you can skip defining controller name at all and just do</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">{</span>
+  <span class="p">...</span>
+  <span class="nx">controller</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{}</span>
+  <span class="p">...</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>and in the template use $ctrl.property to access any property of the controller.</p>
+
+<h2 id="other-features-of-component">Other features of component</h2>
+
+<p>The component method has a couple more things that are worth going over and that quite honestly I am still discovering while refactoring some apps from directive approach to component approach but let’s go over some of them.</p>
+
+<h3 id="require">Require</h3>
+
+<p>Just as directives, components can use the require keyword to “require the controllers of other directives to enable communication between each other.” You can read a very interesting article from <a href="https://twitter.com/toddmotto">Todd Motto</a> on <a href="https://toddmotto.com/directive-to-directive-communication-with-require/">Directive to Directive communication with require</a></p>
+
+<p>This will look something like</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="dl">'</span><span class="s1">myComponent</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="na">require</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">tabsCtrl</span><span class="p">:</span> <span class="dl">'</span><span class="s1">^myTabs</span><span class="dl">'</span>
+  <span class="p">},</span>
+  <span class="p">...</span>
+<span class="p">});</span></code></pre></figure>
+
+<h3 id="one-way-bindings">One way Bindings</h3>
+
+<p>Like we said earlier to get the full performance and useful restraints in your app development you should start using one way bindings, they were introduced also in Angular 1.5 and you can use them as following</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="dl">'</span><span class="s1">myComponent</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="na">bindings</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">oneWayBind</span><span class="p">:</span> <span class="dl">'</span><span class="s1">&lt;</span><span class="dl">'</span>
+    <span class="na">twoWayBind</span><span class="p">:</span> <span class="dl">'</span><span class="s1">=</span><span class="dl">'</span>
+  <span class="p">},</span>
+  <span class="p">...</span>
+<span class="p">});</span></code></pre></figure>
+
+<h2 id="are-components-replacing-directives-when-to-use-or-not-use-them">Are components replacing directives? When to use or not use them?</h2>
+
+<p>Components were not introduced to replace directives altogether, but rather to replace on particular use case of directives and make that use case easier to make.
+So when do you know when to use component and when to use directives?</p>
+
+<p>Components are like mentioned only one use case of directives and they simplify the creating method of this use case. If you are looking for a clean way to lay your app in a semantic component based way, components are the way to go. They :</p>
+
+<ul>
+  <li>Are simple to configure</li>
+  <li>promote best practices like controllerAs and isolated scope</li>
+  <li>Optimized for component based architecture</li>
+  <li>Easier to upgrade to Angular2</li>
+</ul>
+
+<p>when you should <strong>NOT</strong> use components as read in the <a href="https://docs.angularjs.org/guide/component">angular component documentation</a></p>
+
+<ul>
+  <li>for directives that rely on DOM manipulation, adding event listeners etc, because the compile and link functions are unavailable</li>
+  <li>when you need advanced directive definition options like priority, terminal, multi-element</li>
+  <li>when you want a directive that is triggered by an attribute or CSS class, rather than an element</li>
+</ul>
+
+<h2 id="wrap-up">Wrap up</h2>
+
+<p>Components are a really exciting feature of Angular 1.5 as they bring the best practices to defaults and introduce the component based architecture already used in Angular2 into Angular1. This makes it easier to upgrade in the future and put together with one way data binding provide the sanity and right defaults to your apps.</p>
+
+<p>Give it a try and you will realise how easy it is to get started with them.</p>
+
+<p>I used the following articles as reference for this blog post :</p>
+
+<ul>
+  <li>
+    <p><a href="https://docs.angularjs.org/guide/component">https://docs.angularjs.org/guide/component</a></p>
+  </li>
+  <li><a href="https://toddmotto.com/exploring-the-angular-1-5-component-method/">https://toddmotto.com/exploring-the-angular-1-5-component-method/</a></li>
+  <li><a href="https://toddmotto.com/one-way-data-binding-in-angular-1-5/">https://toddmotto.com/one-way-data-binding-in-angular-1-5/</a></li>
+  <li><a href="https://gist.github.com/toddmotto/5b4de6c777d3e446e6410fdadb824522">https://gist.github.com/toddmotto/5b4de6c777d3e446e6410fdadb824522</a></li>
+</ul>
+
+          </div>
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/home?status=Angularjs+Component+method%20-%20/posts/angular-1-component-method%20by%20@joaogarin" title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=/posts/angular-1-component-method" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"/></svg>
+            </a>
+            <a href="https://plus.google.com/share?url=/posts/angular-1-component-method" title="Share on Google+" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 128 128"><path d="M40.7 55.9v16.1c0 0 15.6 0 22 0C59.2 82.5 53.8 88.2 40.7 88.2c-13.3 0-23.7-10.8-23.7-24.2s10.4-24.2 23.7-24.2c7.1 0 11.6 2.5 15.8 5.9 3.3-3.3 3.1-3.8 11.6-11.9 -7.2-6.6-16.8-10.6-27.4-10.6C18.2 23.3 0 41.5 0 64c0 22.5 18.2 40.7 40.7 40.7 33.6 0 41.8-29.3 39-48.8H40.7zM113.9 56.7V42.6h-10.1v14.1H89.4v10.1h14.5v14.5h10.1V66.8H128V56.7H113.9z"/></svg>
+            </a>
+          </div>
+
+          
+            <div id="disqus_thread" class="article-comments"></div>
+            <script src="https://joaogarinblog.disqus.com/embed.js" async defer></script>
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+          
+        </article>
+        <footer class="footer scrollappear">
+  <p>
+    This site is powered by Jekyll and Chalk theme. All content rights reserved to 
+    <a href="/about" title="About me">Joao Garin</a>.
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+
+<script src="/assets/vendor-130c9c254effc51f3283620bc635851da7b99c20901216948f11ba72ee13317f.js" type="text/javascript"></script>
+
+
+  <script src="/assets/webfonts-96493456d319d1bf419afdf8701552d4d486fee6afd304897d4fd81eb4e0cc0b.js" type="text/javascript"></script>
+
+
+
+  <script src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js" type="text/javascript"></script>
+
+
+<script src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js" type="text/javascript"></script>
+
+</body>
+</html>

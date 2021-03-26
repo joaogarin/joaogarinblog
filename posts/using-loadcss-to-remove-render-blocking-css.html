@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>joaogarin | Using loadCSS to remove render blocking CSS</title>
+  <meta name="description" content="Improve performance by removing blocking scripts like CSS from rendering other parts of your website.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="Using loadCSS to remove render blocking CSS">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="/posts/using-loadcss-to-remove-render-blocking-css">
+  <meta property="og:description" content="Improve performance by removing blocking scripts like CSS from rendering other parts of your website.">
+  <meta property="og:site_name" content="joaogarin">
+  <meta property="og:image" content="/posts/app.jpg">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="/posts/using-loadcss-to-remove-render-blocking-css">
+  <meta name="twitter:title" content="Using loadCSS to remove render blocking CSS">
+  <meta name="twitter:description" content="Improve performance by removing blocking scripts like CSS from rendering other parts of your website.">
+  <meta name="twitter:image" content="/posts/app.jpg">
+
+  <link href="/feed.xml" type="application/rss+xml" rel="alternate" title="joaogarin Last 10 blog posts" />
+
+  
+
+  
+    <link rel="icon" type="image/x-icon" href="/assets/favicon-light-a98c41efc5ed9fcc06ac664c9e2f7a9b3c3b2e0a52357d221fe382f6f4abc8fc.ico">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon-light-87d1f2a3a19b1500e5c1626a0492025ca5f7f97d24540dc5900288e92112925a.png">
+    <link rel="stylesheet" type="text/css" href="/assets/light-bb1553a18d0f1ccfe1aabc010584c49b4277a88503216b78906ba719e30019c1.css">
+  
+</head>
+
+<body>
+  <main>
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav scrollappear">
+  <a href="/" class="header-logo" title="joaogarin">joaogarin</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-about">
+  <use href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about" xlink:href="/assets/about-ecf154b571ab8034ae00aeed91a3b7ad68db80b46d958753ad6216c919486e88.svg#icon-about"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://twitter.com/joaogarin" rel="noreferrer noopener" target="_blank" title="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-twitter">
+  <use href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter" xlink:href="/assets/twitter-8842c33965263ad1b03a978406826677a668f94125d5837e70ab83f24b3213a7.svg#icon-twitter"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://www.facebook.com/joao.garin" rel="noreferrer noopener" target="_blank" title="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-facebook">
+  <use href="/assets/facebook-72c99b26d37bee65607720abb23d26b44ef30cca1187f98b0d9305be1230b1bf.svg#icon-facebook" xlink:href="/assets/facebook-72c99b26d37bee65607720abb23d26b44ef30cca1187f98b0d9305be1230b1bf.svg#icon-facebook"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://github.com/joaogarin" rel="noreferrer noopener" target="_blank" title="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-github">
+  <use href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github" xlink:href="/assets/github-094f81040819f34343ee6ffff0980f17e2807b08b595eaaf66ae3554934fd78d.svg#icon-github"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="https://www.linkedin.com/in/joao-garin-9b118525" rel="noreferrer noopener" target="_blank" title="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-linkedin">
+  <use href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin" xlink:href="/assets/linkedin-cdc5c107044324a3dfbea2e9ead15873f8dee304c37d73a046988956b706256e.svg#icon-linkedin"></use>
+</svg>
+
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="/feed.xml" rel="noreferrer noopener" target="_blank" title="RSS">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-rss">
+  <use href="/assets/rss-541ec5cea9cefd10d2fcfec01888f3f231a8829940249835fa7b7b3a12ae0d0d.svg#icon-rss" xlink:href="/assets/rss-541ec5cea9cefd10d2fcfec01888f3f231a8829940249835fa7b7b3a12ae0d0d.svg#icon-rss"></use>
+</svg>
+
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+        <article class="article scrollappear">
+          <header class="article-header">
+            <h1>Using loadCSS to remove render blocking CSS</h1>
+            <p>Improve performance by removing blocking scripts like CSS from rendering other parts of your website.</p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                April 16, 2016
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  9 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tag/web">web</a>
+                
+                  <a href="/tag/drupal">drupal</a>
+                
+                  <a href="/tag/css">css</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <p><a href="/assets/posts/app-c8e9354d46de9e17887ba0f7ce526edc802314a4569bd6491e4560a809bcd4a7.jpg" data-rjs="/assets/posts/app-c8e9354d46de9e17887ba0f7ce526edc802314a4569bd6491e4560a809bcd4a7.jpg" class="fluidbox-trigger">
+  <img src="/assets/posts/app-c8e9354d46de9e17887ba0f7ce526edc802314a4569bd6491e4560a809bcd4a7.jpg" alt="Angularjs components" />
+</a></p>
+
+<p>When doing frontend performance optimizations for your website or app one of the important things to consider is when are visitors actually getting content delivered to them, to be able to interact and see when they visit your site for the first time.</p>
+
+<p>This is especially important for typical seo dependant sites where a lot of the visitors are first time visitors that don’t have your CSS / Fonts or Javascript cached in the browser. Be it online shops, job portals or simple sites this is an extremely relevant topic and not so easy to get around with.</p>
+
+<p>We will explore how you can deliver a better experience by delivering content as fast as possible so that what is really important (what the user sees the first few seconds) gets delivered immediately in the first response the site gets from the server, and everything else gets downloaded in the background asynchronously.</p>
+
+<h2 id="prioritizing-the-size-of-above-the-fold-content">Prioritizing the size of above the fold content</h2>
+
+<p>Above the fold content it’s not just a SEO keyword that is used by marketeers to make sure you compact everything you can into it, bluttering it with whatever you think is relevant in your page (everything..?).</p>
+
+<p>Above the fold is a very important topic when you think about the performance of a page, because that is actually the only thing you need to deliver “immediately” to the user, hopefully in the “first round trip” (response from the server to the browser request). Anything after that can be delivered in a second / third / fourth requests asynchronously so that the user only actually has to wait for this portion of the page.</p>
+
+<p>When you think about this it actually makes a huge impact and immediately sounds really unnecessary that you have to force the users to wait for the footer’s CSS or javascript for example to load to actually deliver the page to them.</p>
+
+<p>Google has a great tip on this on the <a href="&quot;https://developers.google.com/speed/docs/insights/PrioritizeVisibleContent&quot;">Google performance optimization page</a>. Take a look I am sure it will be extremely helpful.</p>
+
+<p>We will now go on to how you can accomplish this in technical terms using <a href="&quot;https://github.com/filamentgroup/loadCSS&quot;">LoadCSS</a>  and <a href="&quot;https://github.com/filamentgroup/criticalCSS&quot;">Critial-CSS</a></p>
+
+<p>##How it works - Moving all CSS out of the blocking zone</p>
+
+<p>When you use a normal CSS link tag to include the CSS in the header of your webpage as the below snippet this tells the browser that when reading this page it should block everything and fetch that specific CSS file from the server.</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;head&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">type=</span><span class="s">"text/css"</span> <span class="na">href=</span><span class="s">"theme.css"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/head&gt;</span></code></pre></figure>
+
+<p>This means making an extra request, waiting for the response and if you have multiple CSS files this means then multiple requests and for mobile devices where the network latency can be bigger this becomes to be a real burden for the user, sometimes waiting several seconds before actually seeing a single pixel on the page.</p>
+
+<p>Like we mentioned earlier the solution is to make sure that the above the fold is presentable at first payload and everything else is loaded in a non blocking way. Let’s explore this further.</p>
+
+<h2 id="step-1---moving-css-out-of-the-head-and-loading-it-asynchronously">Step 1 - Moving CSS out of the head and loading it asynchronously</h2>
+
+<p>The first step of the process is to move the CSS out of the blocking zone (link tags in the head) into the body tag (actually to the bottom of the body tag) and using <a href="&quot;https://github.com/filamentgroup/loadCSS&quot;">LoadCSS</a> to load the CSS asynchronously. This will make sure that the page is delivered without any block resource for CSS.</p>
+
+<p>Because loading CSS and other files being loaded asynchronously using :</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"preload"</span><span class="nt">&gt;</span></code></pre></figure>
+
+<p><a href="&quot;https://www.w3.org/TR/2015/WD-preload-20150721&quot;">W3Spec</a> is being implemented in some browsers, but not all by using loadCSS in the following way you make sure to take advantage of this and use loadCSS to polyfill browsers that don’t support this feature.</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"preload"</span> <span class="na">href=</span><span class="s">"path/to/mystylesheet.css"</span> <span class="na">as=</span><span class="s">"style"</span> <span class="na">onload=</span><span class="s">"this.rel='stylesheet'"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;noscript&gt;&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"path/to/mystylesheet.css"</span><span class="nt">&gt;&lt;/noscript&gt;</span></code></pre></figure>
+
+<p>Since rel=”preload” does not apply the CSS on its own (it merely fetches it), there is an onload handler on the link that will do that for us as soon as the CSS finishes loading. Since this step requires JavaScript, you may want to include an ordinary reference to your CSS file as well, using a noscript element to ensure it only applies in non-JavaScript settings.</p>
+
+<p>This can increase a lot the page speed just by itself depending on how big your CSS is. Try it out and I am sure you will already see a great impact.</p>
+
+<h2 id="step-2---getting-the-critical-above-the-fold-css">Step 2 - Getting the critical above the fold CSS</h2>
+
+<p>Now that you have all your CSS being loaded in a non blocking way, what you experience is that there is a second or two of unstyled content when you clear your cache. So if the browser is not caching your CSS files while they are not loaded the page appears blank or unstyled.</p>
+
+<p>This is definitely not what we want and that is why we will inject the above the fold CSS inline in the head tag so that the user does not perceive this unstyled content at all and just gets the page lightening fast.</p>
+
+<p>So how do we get the CSS that is exactly and only exactly the CSS of the above the fold? You could built it on your own on a separate stylesheet but that is a bit of an extra work you don’t want to do, and fortunately you don’t have to. We will use <a href="&quot;https://github.com/filamentgroup/criticalCSS&quot;">Critial-CSS</a> for this.</p>
+
+<p>CritialCSS allows you to specify a URL, a stylesheet, some optional settings like the height or width of the above the fold (in case you want a bit more or a bit less of auto CSS) and it will launch a headless browser, in this case phantomJs, and it will fetch the above the fold CSS and put it into a separate file for you to use.</p>
+
+<p>This is how it looks in VanillaJs :</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">request</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span> <span class="dl">'</span><span class="s1">path</span><span class="dl">'</span> <span class="p">);</span>
+<span class="kd">var</span> <span class="nx">criticalcss</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">criticalcss</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">fs</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">tmpDir</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">os</span><span class="dl">'</span><span class="p">).</span><span class="nx">tmpdir</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">cssUrl</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">http://site.com/style.css</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">cssPath</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span> <span class="nx">tmpDir</span><span class="p">,</span> <span class="dl">'</span><span class="s1">style.css</span><span class="dl">'</span> <span class="p">);</span>
+<span class="nx">request</span><span class="p">(</span><span class="nx">cssUrl</span><span class="p">).</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">createWriteStream</span><span class="p">(</span><span class="nx">cssPath</span><span class="p">)).</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">close</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">criticalcss</span><span class="p">.</span><span class="nx">getRules</span><span class="p">(</span><span class="nx">cssPath</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">output</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">criticalcss</span><span class="p">.</span><span class="nx">findCritical</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://site.com/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span> <span class="na">rules</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">output</span><span class="p">)</span> <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">output</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">output</span><span class="p">);</span>
+        <span class="p">}</span>
+      <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">});</span></code></pre></figure>
+
+<h2 id="step-3---saving-the-critical-css">Step 3 - Saving the critical CSS</h2>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span> <span class="dl">'</span><span class="s1">critical</span><span class="dl">'</span><span class="p">,</span> <span class="o">-&gt;</span>
+  <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">request</span><span class="dl">'</span><span class="p">)</span>
+  <span class="nx">util</span> <span class="o">=</span> <span class="nx">require</span> <span class="p">(</span><span class="dl">'</span><span class="s1">gulp-util</span><span class="dl">'</span><span class="p">)</span>
+  <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">path</span><span class="dl">'</span><span class="p">)</span>
+  <span class="nx">criticalcss</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">criticalcss</span><span class="dl">'</span><span class="p">)</span>
+  <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">fs</span><span class="dl">'</span><span class="p">)</span>
+  <span class="nx">tmpDir</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">os</span><span class="dl">'</span><span class="p">).</span><span class="nx">tmpdir</span><span class="p">()</span>
+  <span class="nx">cssUrl</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://www.examplesite.com/style.css</span><span class="dl">"</span>
+  <span class="nx">cssPath</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">tmpDir</span><span class="p">,</span> <span class="dl">'</span><span class="s1">style.css</span><span class="dl">'</span><span class="p">)</span>
+  <span class="nx">includePath</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="dl">'</span><span class="s1">dist/css/critical.css</span><span class="dl">'</span><span class="p">)</span>
+  <span class="nx">request</span><span class="p">(</span><span class="nx">cssUrl</span><span class="p">).</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">createWriteStream</span><span class="p">(</span><span class="nx">cssPath</span><span class="p">)).</span><span class="nx">on</span> <span class="dl">'</span><span class="s1">close</span><span class="dl">'</span><span class="p">,</span> <span class="o">-&gt;</span>
+    <span class="nx">criticalcss</span><span class="p">.</span><span class="nx">getRules</span> <span class="nx">cssPath</span><span class="p">,{</span><span class="na">buffer</span><span class="p">:</span> <span class="mi">2000</span><span class="o">*</span><span class="mi">1024</span><span class="p">},</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">output</span><span class="p">)</span> <span class="o">-&gt;</span>
+      <span class="k">if</span> <span class="nx">err</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+      <span class="k">else</span>
+        <span class="nx">criticalcss</span><span class="p">.</span><span class="nx">findCritical</span> <span class="p">(</span><span class="dl">"</span><span class="s2">https://www.examplesite.com</span><span class="dl">"</span><span class="p">),</span> <span class="p">{</span><span class="na">rules</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">output</span><span class="p">),</span><span class="na">buffer</span><span class="p">:</span> <span class="mi">2000</span><span class="o">*</span><span class="mi">1024</span><span class="p">},</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">output</span><span class="p">)</span> <span class="o">-&gt;</span>
+          <span class="k">if</span> <span class="nx">err</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+          <span class="k">else</span>
+            <span class="nx">fs</span><span class="p">.</span><span class="nx">writeFile</span> <span class="nx">includePath</span><span class="p">,</span> <span class="nx">output</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="o">-&gt;</span>
+              <span class="k">if</span> <span class="nx">err</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+              <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="dl">'</span><span class="s1">Critical for jobs written to include!</span><span class="dl">'</span>
+      <span class="k">return</span></code></pre></figure>
+
+<p>There is a couple of things going on here. On the first part we initialise some variables like critical-css, util, path etc. Then we set up the CSS path to fetch the CSS from and the IncludePath which is where the final css will be created on which includes only the above the fold css.</p>
+
+<p>We then run critical css on the page URL, here you can set some options we only set the buffer for memory limits reasons with node. Once criticalCSS finishes we use fs.write to write to the includePath we initialised earlier. And we have our criticalCSS compiled and extracted into a specific file in dist/css/critical.css.</p>
+
+<h2 id="step-4---inlining-the-critical-css">Step 4 - Inlining the critical CSS</h2>
+
+<p>This step can depend a lot depending on where and on what you are building your site with. The idea here is that we take the CSS from the CSS file generated by CriticalCSS and embed it inline in a style tag in the head of your page. By inlining it we are making sure it gets delivered with the first response the server delivers and not extra request is needed to present the page in a nicely styled way, completely transparent to the user of all the process we just went through.</p>
+
+<p>If you are living in CMS world this tipically means doing some kind of preprocess to fetch this CSS and put it directly into the page, for example in Drupal it would look somewhat like this :</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cd">/**
+ * Implements hook_process_page().
+ */</span>
+<span class="k">function</span> <span class="n">my_theme_preprocess_page</span><span class="p">(</span><span class="o">&amp;</span><span class="nv">$vars</span><span class="p">)</span> <span class="p">{</span>
+<span class="c1">// First, define the options for drupal_add_css();</span>
+<span class="nv">$critical_css_options</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'inline'</span><span class="p">,</span>
+    <span class="s1">'scope'</span> <span class="o">=&gt;</span> <span class="s1">'header'</span><span class="p">,</span>
+    <span class="s1">'group'</span> <span class="o">=&gt;</span> <span class="no">CSS_SYSTEM</span><span class="p">,</span>
+    <span class="s1">'weight'</span> <span class="o">=&gt;</span> <span class="o">-</span><span class="mi">1000</span><span class="p">,</span>
+    <span class="s1">'preprocess'</span> <span class="o">=&gt;</span> <span class="kc">FALSE</span><span class="p">,</span>
+  <span class="p">];</span>
+<span class="nv">$critical_css_file</span> <span class="o">=</span> <span class="s1">'critical.css'</span><span class="p">;</span>
+    <span class="c1">// Inline the CSS.</span>
+    <span class="nf">drupal_add_css</span><span class="p">(</span><span class="nb">file_get_contents</span><span class="p">(</span><span class="nf">drupal_get_path</span><span class="p">(</span><span class="s1">'theme'</span><span class="p">,</span> <span class="s1">'my_theme'</span><span class="p">)</span> <span class="mf">.</span> <span class="s1">'/dist/css/'</span> <span class="mf">.</span> <span class="nv">$critical_css_file</span><span class="p">),</span> <span class="nv">$critical_css_options</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>It’s important to keep the amount of the CriticalCSS short, so that the first response does not take too long to be delivered but usually the amount of criticalCSS is a very small portion of the overall CSS so the impact you will see can be that the user now is seeing the content a couple of seconds earlier.</p>
+
+<h2 id="testing-out-the-results">Testing out the results</h2>
+
+<p>A good tool to test the results out is <a href="&quot;http://www.webpagetest.org/&quot;">Webpage test</a> you can see the fist time the user gets anything painted in the browser with charts and screenshots of what exactly he sees.</p>
+
+<p><img src="https://sites.google.com/a/webpagetest.org/docs/_/rsrc/1334422231485/using-webpagetest/metrics/speed-index/chart-line-small.png" alt="Visual progress" /></p>
+
+<p>Make sure that you make some tests before and after doing this process so you can track the effect that it did on your page.</p>
+
+<p>This will also greatly impact the Webpagespeed test from google since one of the key concepts is keeping above the fold content clean and non blocked.</p>
+
+<h2 id="other-improvements">Other improvements</h2>
+
+<p>This is only one of many improvements you can make on the frontend. Other improvements I might write about in the future :</p>
+
+<ul>
+  <li>Minifying CSS</li>
+  <li>Minifying and Uglifying your Javascript</li>
+  <li>Using picture HTML tag to deliver images to different medias (device sizes)</li>
+  <li>Optimizing images by removing any metadata from them before delivering them</li>
+  <li>Remove render blocking javascript</li>
+</ul>
+
+<p>Read more about some tips on the <a href="&quot;https://developers.google.com/speed/docs/insights/about&quot;">google page speed insights</a></p>
+
+          </div>
+          <div class="article-share">
+            
+            
+            <a href="https://twitter.com/home?status=Using+loadCSS+to+remove+render+blocking+CSS%20-%20/posts/using-loadcss-to-remove-render-blocking-css%20by%20@joaogarin" title="Share on Twitter" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M492 109.5c-17.4 7.7-36 12.9-55.6 15.3 20-12 35.4-31 42.6-53.6 -18.7 11.1-39.4 19.2-61.5 23.5C399.8 75.8 374.6 64 346.8 64c-53.5 0-96.8 43.4-96.8 96.9 0 7.6 0.8 15 2.5 22.1 -80.5-4-151.9-42.6-199.6-101.3 -8.3 14.3-13.1 31-13.1 48.7 0 33.6 17.2 63.3 43.2 80.7C67 210.7 52 206.3 39 199c0 0.4 0 0.8 0 1.2 0 47 33.4 86.1 77.7 95 -8.1 2.2-16.7 3.4-25.5 3.4 -6.2 0-12.3-0.6-18.2-1.8 12.3 38.5 48.1 66.5 90.5 67.3 -33.1 26-74.9 41.5-120.3 41.5 -7.8 0-15.5-0.5-23.1-1.4C62.8 432 113.7 448 168.3 448 346.6 448 444 300.3 444 172.2c0-4.2-0.1-8.4-0.3-12.5C462.6 146 479 129 492 109.5z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=/posts/using-loadcss-to-remove-render-blocking-css" title="Share on Facebook" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 512 512"><path d="M288 192v-38.1c0-17.2 3.8-25.9 30.5-25.9H352V64h-55.9c-68.5 0-91.1 31.4-91.1 85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z"/></svg>
+            </a>
+            <a href="https://plus.google.com/share?url=/posts/using-loadcss-to-remove-render-blocking-css" title="Share on Google+" rel="noreferrer noopener" target="_blank">
+              <svg viewBox="0 0 128 128"><path d="M40.7 55.9v16.1c0 0 15.6 0 22 0C59.2 82.5 53.8 88.2 40.7 88.2c-13.3 0-23.7-10.8-23.7-24.2s10.4-24.2 23.7-24.2c7.1 0 11.6 2.5 15.8 5.9 3.3-3.3 3.1-3.8 11.6-11.9 -7.2-6.6-16.8-10.6-27.4-10.6C18.2 23.3 0 41.5 0 64c0 22.5 18.2 40.7 40.7 40.7 33.6 0 41.8-29.3 39-48.8H40.7zM113.9 56.7V42.6h-10.1v14.1H89.4v10.1h14.5v14.5h10.1V66.8H128V56.7H113.9z"/></svg>
+            </a>
+          </div>
+
+          
+            <div id="disqus_thread" class="article-comments"></div>
+            <script src="https://joaogarinblog.disqus.com/embed.js" async defer></script>
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+          
+        </article>
+        <footer class="footer scrollappear">
+  <p>
+    This site is powered by Jekyll and Chalk theme. All content rights reserved to 
+    <a href="/about" title="About me">Joao Garin</a>.
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  
+
+<script src="/assets/vendor-130c9c254effc51f3283620bc635851da7b99c20901216948f11ba72ee13317f.js" type="text/javascript"></script>
+
+
+  <script src="/assets/webfonts-96493456d319d1bf419afdf8701552d4d486fee6afd304897d4fd81eb4e0cc0b.js" type="text/javascript"></script>
+
+
+
+  <script src="/assets/scrollappear-e2da8ea567e418637e31266cc5302126eaa79f62a2273739086358b589a89ee6.js" type="text/javascript"></script>
+
+
+<script src="/assets/application-cfde13ac81ddaf4351b2e739603e2baf688d0fcc9aba613fe62bbb1c7b037fb9.js" type="text/javascript"></script>
+
+</body>
+</html>
